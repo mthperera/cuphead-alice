@@ -38,7 +38,32 @@ LISTA_EXPLOSAO_CARTINHA  = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Explosao_Cartinha_06.png")), (32, 48)),
 ]
 
-IMAGEM_FUNDO_RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Rainha_Copas.png")), (LARGURA_TELA, ALTURA_TELA))
+IMAGEM_FUNDO_RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Rainha_Copas_4.png")), (LARGURA_TELA, ALTURA_TELA))
+
+IMAGEM_FUNDO_COELHO = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Coelho.png")), (LARGURA_TELA, ALTURA_TELA))
+
+RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Rainha_Copas.png")), (128, 192))
+
+LISTA_INVOCAR_CORACAO  = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_01.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_02.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_03.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_04.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_05.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_06.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_07.png")), (128, 192)),
+]
+
+LISTA_COELHO_CORRENDO  = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_02.png")), (128, 128)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_03.png")), (128, 128)),
+]
+
+LISTA_COELHO_PULANDO  = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_01.png")), (128, 128)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_02.png")), (128, 128)),
+]
+
 
 POS_X = 700
 POS_Y = 500

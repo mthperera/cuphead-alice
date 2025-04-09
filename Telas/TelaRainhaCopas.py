@@ -1,5 +1,6 @@
 from Classes.Cartinha import Cartinha
 from Classes.Coracao import Coracao
+from Classes.RainhaCopas import RainhaCopas
 from constantes import *
 from random import randint
 
@@ -8,6 +9,7 @@ class TelaRainhaCopas():
     def __init__(self):
         self.lista_cartinhas = list()
         self.lista_coracoes = list()
+        self.rainha_copas = RainhaCopas()
         self.tela_atual = "TelaRainhaCopas"
         self.t0 = pygame.time.get_ticks()
         self.delta_t_acel = 5000
@@ -33,7 +35,7 @@ class TelaRainhaCopas():
             for _ in range(3):
                 cartinha = Cartinha()
                 cartinha.pos_x = POS_X + randint(-150, 50)
-                cartinha.pos_y = POS_Y + randint(-300, 50)
+                cartinha.pos_y = POS_Y + randint(-200, 50)
                 cartinha.velocidade_x = randint(-120, -10)
                 cartinha.velocidade_y = randint(-50, -30)
                 cartinha.movimento = "acelerando"
@@ -56,11 +58,13 @@ class TelaRainhaCopas():
 
     def gera_coracoes(self):
         if (pygame.time.get_ticks() - self.t0 - 30000) // self.delta_t_coracao > 0:
-            for _ in range(7):
+            for _ in range(12):
                 coracao = Coracao()
-                coracao.pos_y = randint(-200, -30)
+                coracao.pos_y = randint(-700, -400)
                 coracao.pos_x = randint(50, LARGURA_TELA - 100)
                 self.lista_coracoes.append(coracao)
+                self.rainha_copas.ataque_coracao = "Atacando"
+                self.rainha_copas.t0_ataque = pygame.time.get_ticks()
 
             self.delta_t_coracao += 4000
 
@@ -70,10 +74,12 @@ class TelaRainhaCopas():
         window.blit(IMAGEM_FUNDO_RAINHA_COPAS, (0, 0))
         
         for cartinha in self.lista_cartinhas:
-            window.blit(cartinha.image, (cartinha.pos_x, cartinha.pos_y))
+            cartinha.desenhar(window)
         
         for coracao in self.lista_coracoes:
-            window.blit(coracao.image, (coracao.pos_x, coracao.pos_y))
+            coracao.desenhar(window)
+        
+        self.rainha_copas.desenhar(window)
 
         pygame.display.flip()
     
@@ -121,6 +127,11 @@ class TelaRainhaCopas():
                 self.lista_cartinhas[1].t0_morte = pygame.time.get_ticks()
 
                 self.delta_t_remove += 10000
+        
+        if self.rainha_copas.ataque_coracao == "Atacando":
+            self.rainha_copas.invocar_coracoes()
+        
+        self.rainha_copas.movimentar()
 
         return True
     

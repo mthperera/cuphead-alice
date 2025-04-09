@@ -1,2 +1,0 @@
-class TirosCoracoes():
-    pass

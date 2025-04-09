@@ -6,7 +6,6 @@ class Cartinha():
     
     def __init__(self):
         self.t0 = pygame.time.get_ticks()
-        self.imagens = LISTA_IMAGENS_CARTINHA
         self.image = LISTA_IMAGENS_CARTINHA[0]
         self.masks = MASKS_CARTINHA
         self.movimento = None
@@ -46,14 +45,14 @@ class Cartinha():
             self.pos_x = LARGURA_TELA - 65
             self.velocidade_x = 0
 
-        if 10 < self.pos_y < ALTURA_TELA - 64:
+        if 10 < self.pos_y < ALTURA_TELA - 100:
             self.pos_y += self.velocidade_y * self.delta_t
             self.velocidade_y += self.aceleracao_y * self.delta_t
         elif self.pos_y <= 10:
             self.pos_y = 11
             self.velocidade_y = 0
-        elif self.pos_y >= ALTURA_TELA - 64:
-            self.pos_y = ALTURA_TELA - 65
+        elif self.pos_y >= ALTURA_TELA - 100:
+            self.pos_y = ALTURA_TELA - 101
             self.velocidade_y = 0
 
         self.t0 = self.t1
@@ -82,13 +81,13 @@ class Cartinha():
             self.pos_x = LARGURA_TELA - 65
             self.velocidade_x = 0
 
-        if 10 < self.pos_y < ALTURA_TELA - 64:
+        if 10 < self.pos_y < ALTURA_TELA - 100:
             self.pos_y += self.velocidade_y * self.delta_t
         elif self.pos_y <= 10:
             self.pos_y = 11
             self.velocidade_y = 0
-        elif self.pos_y >= ALTURA_TELA - 64:
-            self.pos_y = ALTURA_TELA - 65
+        elif self.pos_y >= ALTURA_TELA - 100:
+            self.pos_y = ALTURA_TELA - 101
             self.velocidade_y = 0
 
         self.t0 = self.t1
@@ -124,11 +123,11 @@ class Cartinha():
             self.image = LISTA_EXPLOSAO_CARTINHA[4]
             self.image = pygame.transform.rotate(self.image, self.angulo)
         elif (pygame.time.get_ticks() - self.t0_morte) %  2800 <= 2400:
-            self.image = LISTA_EXPLOSAO_CARTINHA[5]
+            self.image = LISTA_EXPLOSAO_CARTINHA[5] 
             self.image = pygame.transform.rotate(self.image, self.angulo)
         else:
             self.vivo = "Morto"
     
 
     def desenhar(self, window):
-        window.blit(self.image, (self.pos_x, self.pos_y))
+        window.blit(self.image, (self.pos_x, self.pos_y))  
