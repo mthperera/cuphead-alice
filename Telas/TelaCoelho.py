@@ -24,6 +24,7 @@ class TelaCoelho():
 
     def desenha(self, window):
         window.fill(BRANCO)
+        
         window.blit(IMAGEM_FUNDO_COELHO, (0, 0))
 
         self.coelho.desenhar(window)

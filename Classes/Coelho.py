@@ -38,7 +38,7 @@ class Coelho():
 
         if self.pos_y > self.pos_y_inicial - 30:
             self.velocidade_x = 40
-            self.image.set_alpha(255- self.i**2)
+            self.image.set_alpha(255- self.i*12)
             self.i += 1
         else:
             self.image = LISTA_COELHO_PULANDO[0]
