@@ -5,21 +5,8 @@ from Classes.Coelho import Coelho
 class TelaCoelho():
 
     def __init__(self):
-        self.tela_atual = "TelaCoelho"
         self.coelho = Coelho()
         self.t0 = pygame.time.get_ticks()
-
-
-    def inicializa(self):
-        pygame.init()
-
-        # info = pygame.display.Info()
-        # largura, altura = info.current_w, info.current_h
-        # window = pygame.display.set_mode((largura, altura), pygame.FULLSCREEN)
-
-        window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
- 
-        return window
 
 
     def desenha(self, window):
@@ -35,10 +22,10 @@ class TelaCoelho():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return False
+                return "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return False
+                    return "Sair"
         
         
         self.coelho.movimentar()
@@ -55,6 +42,6 @@ class TelaCoelho():
             self.coelho.pular()
 
 
-        return True
+        return "TelaCoelho"
     
     

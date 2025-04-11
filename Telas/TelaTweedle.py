@@ -8,7 +8,6 @@ from Classes.Ioio import *
 
 class TelaTweedle:
     def __init__(self):
-        self.tela_atual = "TelaTweedle"
         self.grupo_plataformas = pygame.sprite.Group()
         self.grupo_tweedle = pygame.sprite.Group()
         self.grupo_plataformas_ovo = pygame.sprite.Group()
@@ -17,8 +16,8 @@ class TelaTweedle:
         self.tweedle_dum = TweedleDum(LARGURA_TELA - LISTA_TEEDLE_OVO[0].get_width() - 60, 20)
         self.plataforma_ovo_dee = PlataformaOvoDee(30, 110)
         self.plataforma_ovo_dum = PlataformaOvoDum(LARGURA_TELA - IMAGEM_CASCA_OVO.get_width() - 30, 110)
-        self.ioio_dee = IoioDee(150, 350)
-        self.ioio_dum = IoioDum(LARGURA_TELA - LISTA_IOIO[0].get_width() - 150, 350)
+        self.ioio_dee = IoioDee(200, 450)
+        self.ioio_dum = IoioDum(LARGURA_TELA - LISTA_IOIO[0].get_width() - 250, 450)
         self.grupo_tweedle.add(self.tweedle_dee)
         self.grupo_tweedle.add(self.tweedle_dum)
         self.grupo_plataformas_ovo.add(self.plataforma_ovo_dee)
@@ -28,14 +27,7 @@ class TelaTweedle:
         self.t0 = pygame.time.get_ticks()
         self.delta_t = 1500
 
-
-    def inicializa(self):
-        pygame.init()
         # Animações ovo quebrando + sonoros estilo retro
-
-        window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
-
-        return window
 
     def desenha(self, window):
         window.fill(BRANCO)
@@ -57,10 +49,10 @@ class TelaTweedle:
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return False
+                return "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return False
+                    return "Sair"
         
 
         self.grupo_plataformas.update()
@@ -93,5 +85,5 @@ class TelaTweedle:
             self.delta_t += 1500
         
 
-        return True
+        return "TelaTweedle"
 

@@ -1,3 +1,6 @@
+import pygame
+from constantes import *
+
 from Telas.TelaRainhaCopas import TelaRainhaCopas
 from Telas.TelaCoelho import TelaCoelho
 from Telas.TelaTweedle import TelaTweedle
@@ -7,45 +10,26 @@ from Telas.TelaRainhaVermelha import TelaRainhaVermelha
 class Jogo():
 
     def __init__(self):
-        self.tela_atual = "TelaRainhaVermelha"
+        self.tela_atual_key = "TelaRainhaVermelha"
+        self.window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
+        self.telas = {
+            "TelaRainhaCopas": TelaRainhaCopas(),
+            "TelaCoelho": TelaCoelho(),
+            "TelaRainhaVermelha": TelaRainhaVermelha(),
+            "TelaTweedle": TelaTweedle(),
+            "Sair": "Sair"
+        }
+        self.tela_atual_value = self.telas[self.tela_atual_key]
 
 
     def inicializa(self):
+        # vai dar problema no t0 quando mudar de tela pq a classe foi inicializada antes. caso uma fase fosse se repetir, todos os parâmetros não iriam estar zerados, ai seria mt paia, talvez seja legal inicializar no looping
+        
+        while self.tela_atual_key in [key for key in self.telas.keys() if key != "Sair"]:
+            self.tela_atual_value.desenha(self.window)
+            self.proxima_tela = self.tela_atual_value.atualiza_estado()
+            if self.proxima_tela != self.tela_atual_key:
+                self.tela_atual_key = self.proxima_tela
+                self.tela_atual_value = self.telas[self.tela_atual_key]
 
-        if self.tela_atual == "TelaRainhaCopas":
-            tela_rainha_copas = TelaRainhaCopas()
-            window = tela_rainha_copas.inicializa()
-            while tela_rainha_copas.atualiza_estado():
-                tela_rainha_copas.desenha(window)
-                if tela_rainha_copas.tela_atual != "TelaRainhaCopas":
-                    self.tela_atual = tela_rainha_copas.tela_atual
-                    break
-
-        if self.tela_atual == "TelaCoelho":
-            tela_coelho = TelaCoelho()
-            window = tela_coelho.inicializa()
-            while tela_coelho.atualiza_estado():
-                tela_coelho.desenha(window)
-                if tela_coelho.tela_atual != "TelaCoelho":
-                    self.tela_atual = tela_coelho.tela_atual
-                    break
-        
-        if self.tela_atual == "TelaTweedle":
-            tela_tweedle = TelaTweedle()
-            window = tela_tweedle.inicializa()
-            while tela_tweedle.atualiza_estado():
-                tela_tweedle.desenha(window)
-                if tela_tweedle.tela_atual != "TelaTweedle":
-                    self.tela_atual = tela_tweedle.tela_atual
-                    break
-        
-        if self.tela_atual == "TelaRainhaVermelha":
-            tela_rainha_vermelha = TelaRainhaVermelha()
-            window = tela_rainha_vermelha.inicializa()
-            while tela_rainha_vermelha.atualiza_estado():
-                tela_rainha_vermelha.desenha(window)
-                if tela_rainha_vermelha.tela_atual != "TelaRainhaVermelha":
-                    self.tela_atual = tela_rainha_vermelha.tela_atual
-                    break
-        
 

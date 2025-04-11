@@ -7,7 +7,6 @@ from Classes.PlataformaRei import PlataformaRei
 class TelaRainhaVermelha():
 
     def __init__(self):
-        self.tela_atual = "TelaRainhaVermelha"
         self.t0 = pygame.time.get_ticks()
         self.grupo_plataforma = pygame.sprite.Group()
         self.grupo_plataforma.add(PlataformaXadrez())
@@ -16,16 +15,7 @@ class TelaRainhaVermelha():
         self.grupo_plataforma_rei = pygame.sprite.Group()
         self.grupo_plataforma_rei.add(PlataformaRei())
 
-
-    def inicializa(self):
-        pygame.init()
-
         # "Você é apenas uma peça... jogue ou seja descartada."
-
-        window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA), pygame.FULLSCREEN)
-
- 
-        return window
 
 
     def desenha(self, window):
@@ -43,15 +33,15 @@ class TelaRainhaVermelha():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return False
+                return "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return False
+                    return "Sair"
         
         self.grupo_plataforma.update()
         self.grupo_plataforma_rainha.update()
         self.grupo_plataforma_rei.update()
 
-        return True
+        return "TelaRainhaVermelha"
     
     

@@ -10,24 +10,11 @@ class TelaRainhaCopas():
         self.lista_cartinhas = list()
         self.lista_coracoes = list()
         self.rainha_copas = RainhaCopas()
-        self.tela_atual = "TelaRainhaCopas"
         self.t0 = pygame.time.get_ticks()
         self.delta_t_acel = 5000
         self.delta_t_pers = 5000
         self.delta_t_coracao = 5000
         self.delta_t_remove = 15000
-
-
-    def inicializa(self):
-        pygame.init()
-
-        # info = pygame.display.Info()
-        # largura, altura = info.current_w, info.current_h
-        # window = pygame.display.set_mode((largura, altura), pygame.FULLSCREEN)
-
-        window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
- 
-        return window
 
 
     def gera_cartinhas_acelerando(self):
@@ -37,7 +24,7 @@ class TelaRainhaCopas():
                 cartinha.pos_x = LARGURA_TELA - 200 + randint(-150, 50)
                 cartinha.pos_y = ALTURA_TELA + randint(-250, -50)
                 cartinha.velocidade_x = randint(-120, -10)
-                cartinha.velocidade_y = randint(-50, -30)
+                cartinha.velocidade_y = randint(-100, -50)
                 cartinha.movimento = "acelerando"
                 self.lista_cartinhas.append(cartinha)
 
@@ -75,10 +62,10 @@ class TelaRainhaCopas():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return False
+                return "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return False
+                    return "Sair"
         
 
         self.gera_cartinhas_acelerando()
@@ -126,6 +113,6 @@ class TelaRainhaCopas():
         
         self.rainha_copas.movimentar()
 
-        return True
+        return "TelaRainhaCopas"
     
     
