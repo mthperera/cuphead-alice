@@ -7,9 +7,9 @@ class RainhaCopas():
     def __init__(self):
         self.image = LISTA_INVOCAR_CORACAO[2]
         self.t0_movimento = pygame.time.get_ticks()
-        self.pos_x_inicial = LARGURA_TELA - 200
+        self.pos_x_inicial = LARGURA_TELA - 300
         self.pos_x = self.pos_x_inicial
-        self.pos_y_inicial = ALTURA_TELA - 239
+        self.pos_y_inicial = ALTURA_TELA - 315
         self.pos_y = self.pos_y_inicial
         self.ataque_coracao = "Sem ataque"
         self.t0_ataque = 0

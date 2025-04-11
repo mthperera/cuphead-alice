@@ -5,12 +5,12 @@ class Coelho():
     
     def __init__(self):
         self.pos_x = 20
-        self.pos_y_inicial = self.pos_y = ALTURA_TELA - 235
+        self.pos_y_inicial = self.pos_y = ALTURA_TELA - 275 - (170-128)
         self.t0 = self.t0_inicio = self.t0_pulo = pygame.time.get_ticks()
         self.pulo = False
         self.velocidade_x = 70
-        self.velocidade_y = -50
-        self.aceleracao_y = 30
+        self.velocidade_y = -90
+        self.aceleracao_y = 40
 
     def movimentar(self):
         self.t1 = pygame.time.get_ticks()
@@ -38,7 +38,7 @@ class Coelho():
 
         if self.pos_y > self.pos_y_inicial - 30:
             self.velocidade_x = 40
-            self.image.set_alpha(255- self.i*12)
+            self.image.set_alpha(255- self.i*20)
             self.i += 1
         else:
             self.image = LISTA_COELHO_PULANDO[0]

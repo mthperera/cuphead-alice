@@ -1,0 +1,21 @@
+import pygame
+from constantes import *
+from math import cos
+
+class PlataformaRei(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = IMAGEM_PLATAFORMA_REI 
+        self.velocidade_y = 120
+        self.pos_x = 0
+        self.pos_y = 150
+        self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
+        self.t0 = pygame.time.get_ticks()
+    
+
+    def movimentar(self):
+        self.rect.y = self.pos_y + 5 * cos((pygame.time.get_ticks() - self.t0)/1000)
+
+
+    def update(self):
+        self.movimentar()

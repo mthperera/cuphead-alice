@@ -36,10 +36,14 @@ class TelaCoelho():
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return False
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_ESCAPE:
+                    return False
+        
         
         self.coelho.movimentar()
 
-        if self.coelho.pos_x > 260 and not self.coelho.pulo:
+        if self.coelho.pos_x > 2*LARGURA_TELA/5 and not self.coelho.pulo:
             self.coelho.pulo = True
             self.coelho.pos_y -= 30
             self.coelho.i = 0

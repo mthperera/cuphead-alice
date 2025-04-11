@@ -32,36 +32,24 @@ class TelaRainhaCopas():
 
     def gera_cartinhas_acelerando(self):
         if (pygame.time.get_ticks() - self.t0) // self.delta_t_acel > 0 and (pygame.time.get_ticks()- self.t0) < 60000:
-            for _ in range(3):
+            for _ in range(5):
                 cartinha = Cartinha()
-                cartinha.pos_x = POS_X + randint(-150, 50)
-                cartinha.pos_y = POS_Y + randint(-200, 50)
+                cartinha.pos_x = LARGURA_TELA - 200 + randint(-150, 50)
+                cartinha.pos_y = ALTURA_TELA + randint(-250, -50)
                 cartinha.velocidade_x = randint(-120, -10)
                 cartinha.velocidade_y = randint(-50, -30)
                 cartinha.movimento = "acelerando"
                 self.lista_cartinhas.append(cartinha)
 
             self.delta_t_acel += 5000
-    
-    
-    def gera_cartinhas_perseguindo(self):
-        if (pygame.time.get_ticks() - self.t0 - 20000) // self.delta_t_pers > 0 and 25000 < (pygame.time.get_ticks()- self.t0) < 40000:
-            for _ in range(3):
-                cartinha = Cartinha()
-                cartinha.pos_x = POS_X + randint(-200, 50)
-                cartinha.pos_y = POS_Y + randint(-200, 50)
-                cartinha.movimento = "perseguindo"
-                self.lista_cartinhas.append(cartinha)
-
-            self.delta_t_pers += 5000
 
 
     def gera_coracoes(self):
         if (pygame.time.get_ticks() - self.t0 - 30000) // self.delta_t_coracao > 0:
-            for _ in range(12):
+            for _ in range(18):
                 coracao = Coracao()
                 coracao.pos_y = randint(-700, -400)
-                coracao.pos_x = randint(50, LARGURA_TELA - 100)
+                coracao.pos_x = randint(50, LARGURA_TELA - 200)
                 self.lista_coracoes.append(coracao)
                 self.rainha_copas.ataque_coracao = "Atacando"
                 self.rainha_copas.t0_ataque = pygame.time.get_ticks()
@@ -88,6 +76,10 @@ class TelaRainhaCopas():
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 return False
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_ESCAPE:
+                    return False
+        
 
         self.gera_cartinhas_acelerando()
         # self.gera_cartinhas_perseguindo()
@@ -114,17 +106,18 @@ class TelaRainhaCopas():
                 cartinha.animar_morte()
             elif cartinha.vivo == "Morto":
                 self.lista_cartinhas.remove(cartinha)
-            # elif cartinha.movimento == "perseguindo":
-            #     cartinha.movimentar_perseguindo(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1])
-            #     cartinha.animar()
 
         if (pygame.time.get_ticks() - self.t0) // self.delta_t_remove > 0 and (pygame.time.get_ticks() - self.t0) < 100000:
 
-            if len(self.lista_cartinhas) > 8:
+            if len(self.lista_cartinhas) > 15:
                 self.lista_cartinhas[0].vivo = "Morrendo"
                 self.lista_cartinhas[0].t0_morte = pygame.time.get_ticks()
                 self.lista_cartinhas[1].vivo = "Morrendo"
                 self.lista_cartinhas[1].t0_morte = pygame.time.get_ticks()
+                self.lista_cartinhas[2].vivo = "Morrendo"
+                self.lista_cartinhas[2].t0_morte = pygame.time.get_ticks()
+                self.lista_cartinhas[3].vivo = "Morrendo"
+                self.lista_cartinhas[3].t0_morte = pygame.time.get_ticks()
 
                 self.delta_t_remove += 10000
         

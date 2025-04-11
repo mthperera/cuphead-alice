@@ -10,6 +10,11 @@ CINZA = (83, 113, 110)
 LARGURA_TELA = 800
 ALTURA_TELA = 600
 
+pygame.init()
+info = pygame.display.Info()
+LARGURA_TELA, ALTURA_TELA = info.current_w, info.current_h
+
+
 LISTA_IMAGENS_CARTINHA = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens", "Cartinha_Cima.png")), (48, 48)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens", "Cartinha_Baixo.png")), (48, 48)),
@@ -46,26 +51,26 @@ IMAGEM_FUNDO_RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.joi
 
 IMAGEM_FUNDO_COELHO = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Coelho_01.png")), (LARGURA_TELA, ALTURA_TELA))
 
-RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Rainha_Copas.png")), (128, 192))
+RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Rainha_Copas.png")), (170, 256))
 
 LISTA_INVOCAR_CORACAO  = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_01.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_02.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_03.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_04.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_05.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_06.png")), (128, 192)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_07.png")), (128, 192)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_01.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_02.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_03.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_04.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_05.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_06.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Invocar_Coracao_07.png")), (170, 256)),
 ]
 
 LISTA_COELHO_CORRENDO  = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_02.png")), (128, 128)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_03.png")), (128, 128)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_02.png")), (170, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Correndo_03.png")), (170, 170)),
 ]
 
 LISTA_COELHO_PULANDO  = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_01.png")), (128, 128)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_02.png")), (128, 128)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_01.png")), (170, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Coelho_Pulando_02.png")), (170, 170)),
 ]
 
 PLATAFORMA_PEDRA = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Pedra.png")), (96, 96))
@@ -88,11 +93,15 @@ LISTA_IOIO = [
 ]
 
 LISTA_OVOS = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_01.png")), (48, 48)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_02.png")), (48, 48)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_03.png")), (48, 48)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_04.png")), (48, 48)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_01.png")), (32, 32)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_02.png")), (32, 32)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_03.png")), (32, 32)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Ovo_04.png")), (32, 32)),
 ]
 
-POS_X = 700
-POS_Y = 50
+IMAGEM_FUNDO_RAINHA_VERMELHA = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Rainha_Vermelha.png")), (LARGURA_TELA, ALTURA_TELA))
+
+IMAGEM_PLATAFORMA_XADREZ = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Xadrez.png")), (7*ALTURA_TELA//8, 7*ALTURA_TELA//8))
+
+IMAGEM_PLATAFORMA_RAINHA = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Rainha.png")), (256, 256))
+IMAGEM_PLATAFORMA_REI = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Rainha.png")), (256, 256))

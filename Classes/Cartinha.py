@@ -45,14 +45,14 @@ class Cartinha():
             self.pos_x = LARGURA_TELA - 65
             self.velocidade_x = 0
 
-        if 10 < self.pos_y < ALTURA_TELA - 100:
+        if 10 < self.pos_y < ALTURA_TELA - 115:
             self.pos_y += self.velocidade_y * self.delta_t
             self.velocidade_y += self.aceleracao_y * self.delta_t
         elif self.pos_y <= 10:
             self.pos_y = 11
             self.velocidade_y = 0
-        elif self.pos_y >= ALTURA_TELA - 100:
-            self.pos_y = ALTURA_TELA - 101
+        elif self.pos_y >= ALTURA_TELA - 115:
+            self.pos_y = ALTURA_TELA - 116
             self.velocidade_y = 0
 
         self.t0 = self.t1

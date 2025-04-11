@@ -5,14 +5,14 @@ from math import sqrt
 
 class Ovo(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, x_alvo, y_alvo):
         pygame.sprite.Sprite.__init__(self)
-        self.pos_x = 150
-        self.pos_y = 60
-        self.dx = x - self.pos_x
-        self.dy = y - self.pos_y
-        self.velocidade_x = self.dx/sqrt(self.dx**2 + self.dy**2) * 50
-        self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 50
+        self.pos_x = x
+        self.pos_y = y
+        self.dx = x_alvo - self.pos_x
+        self.dy = y_alvo - self.pos_y
+        self.velocidade_x = self.dx/sqrt(self.dx**2 + self.dy**2) * 350
+        self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 350
         self.t0 = pygame.time.get_ticks()
         self.image = choice(LISTA_OVOS)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
