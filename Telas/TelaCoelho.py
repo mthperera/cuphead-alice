@@ -5,6 +5,7 @@ from Classes.Coelho import Coelho
 class TelaCoelho():
 
     def __init__(self):
+        self.tela_atual = "TelaCoelho"
         self.coelho = Coelho()
         self.t0 = pygame.time.get_ticks()
 
@@ -22,10 +23,10 @@ class TelaCoelho():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return "Sair"
+                self.tela_atual = "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return "Sair"
+                    self.tela_atual = "Sair"
         
         
         self.coelho.movimentar()
@@ -42,6 +43,6 @@ class TelaCoelho():
             self.coelho.pular()
 
 
-        return "TelaCoelho"
+        return True
     
     

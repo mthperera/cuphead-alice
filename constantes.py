@@ -144,3 +144,9 @@ LISTA_PECAS = [
 ]
 
 FUNDO_CARTAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Tela_Cartas.png")), (LARGURA_TELA, ALTURA_TELA))
+
+LISTA_CARTA_VIRADA = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Carta_Virada.png")), (0.39*LARGURA_TELA, 0.97*ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Carta_Virada.png")), (0.355*LARGURA_TELA, 0.97*ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Carta_Virada.png")), (0.38*LARGURA_TELA, 0.97*ALTURA_TELA)),
+]

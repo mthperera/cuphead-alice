@@ -7,6 +7,7 @@ from random import randint
 class TelaRainhaCopas():
 
     def __init__(self):
+        self.tela_atual = "TelaRainhaCopas"
         self.lista_cartinhas = list()
         self.lista_coracoes = list()
         self.rainha_copas = RainhaCopas()
@@ -62,10 +63,10 @@ class TelaRainhaCopas():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return "Sair"
+                self.tela_atual = "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return "Sair"
+                    self.tela_atual = "Sair"
         
 
         self.gera_cartinhas_acelerando()
@@ -113,6 +114,6 @@ class TelaRainhaCopas():
         
         self.rainha_copas.movimentar()
 
-        return "TelaRainhaCopas"
+        return True
     
     

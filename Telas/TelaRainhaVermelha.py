@@ -9,6 +9,7 @@ from Classes.ReiVermelho import ReiVermelho
 class TelaRainhaVermelha():
 
     def __init__(self):
+        self.tela_atual = "TelaRainhaVermelha"
         self.t0 = pygame.time.get_ticks()
         self.grupo_plataforma = pygame.sprite.Group()
         self.grupo_plataforma.add(PlataformaXadrez())
@@ -47,10 +48,10 @@ class TelaRainhaVermelha():
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return "Sair"
+                self.tela_atual = "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return "Sair"
+                    self.tela_atual = "Sair"
         
         self.grupo_plataforma.update()
         self.grupo_plataforma_rainha.update()
@@ -62,6 +63,6 @@ class TelaRainhaVermelha():
         for rei in self.grupo_rei:
             rei.grupo_pecas.update()
 
-        return "TelaRainhaVermelha"
+        return True
     
     

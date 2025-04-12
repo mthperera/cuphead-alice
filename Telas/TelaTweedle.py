@@ -8,6 +8,7 @@ from Classes.Ioio import *
 
 class TelaTweedle:
     def __init__(self):
+        self.tela_atual = "TelaTweedle"
         self.grupo_plataformas = pygame.sprite.Group()
         self.grupo_tweedle = pygame.sprite.Group()
         self.grupo_plataformas_ovo = pygame.sprite.Group()
@@ -49,10 +50,10 @@ class TelaTweedle:
     def atualiza_estado(self):
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
-                return "Sair"
+                self.tela_atual = "Sair"
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
-                    return "Sair"
+                    self.tela_atual = "Sair"
         
 
         self.grupo_plataformas.update()
@@ -85,5 +86,5 @@ class TelaTweedle:
             self.delta_t += 1500
         
 
-        return "TelaTweedle"
+        return True
 
