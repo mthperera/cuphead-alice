@@ -105,3 +105,42 @@ IMAGEM_PLATAFORMA_XADREZ = pygame.transform.scale(pygame.image.load(os.path.join
 
 IMAGEM_PLATAFORMA_RAINHA = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Rainha.png")), (256, 256))
 IMAGEM_PLATAFORMA_REI = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Plataforma_Rainha.png")), (256, 256))
+
+IMAGEM_RAINHA_BRANCA = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Rainha_Branca.png")), (128, 192))
+
+LISTA_RAINHA_VERMELHA = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Normal.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Piscando.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Estressada.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Atacando.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Ataca.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","RainhaVermelha_Voltando.png")), (170, 256)),
+]
+
+LISTA_LIVROS = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Livro_01.png")), (48, 48)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Livro_02.png")), (48, 48)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Livro_03.png")), (48, 48)),
+]
+
+LISTA_REI = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","ReiVermelho_Abaixado.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","ReiVermelho_Levantado.png")), (170, 256)),
+]
+
+LISTA_PECAS = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Bispo.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Torre.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Cavalo.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão_Cinza.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão_Cinza.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Peão_Cinza.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Bispo_Cinza.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Torre_Cinza.png")), (40, 60)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Cavalo_Cinza.png")), (40, 60)),
+]
+
+FUNDO_CARTAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets\Imagens","Fundo_Tela_Cartas.png")), (LARGURA_TELA, ALTURA_TELA))

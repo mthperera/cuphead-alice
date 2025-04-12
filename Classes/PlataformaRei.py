@@ -8,7 +8,7 @@ class PlataformaRei(pygame.sprite.Sprite):
         self.image = IMAGEM_PLATAFORMA_REI 
         self.velocidade_y = 120
         self.pos_x = 0
-        self.pos_y = 150
+        self.pos_y = 200
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.t0 = pygame.time.get_ticks()
     

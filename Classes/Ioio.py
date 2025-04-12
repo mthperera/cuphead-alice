@@ -14,8 +14,8 @@ class IoioDee(pygame.sprite.Sprite):
     
     
     def movimentar(self):
-        self.rect.y = self.pos_y + 150*cos(0.5*(pygame.time.get_ticks()-self.t0)/1000)
-        self.rect.x = self.pos_x + 120*cos(1*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.y = self.pos_y + 200*cos(1*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.x = self.pos_x + 150*cos(1.5*(pygame.time.get_ticks()-self.t0)/1000)
     
 
     def piscar(self):
@@ -43,8 +43,8 @@ class IoioDum(pygame.sprite.Sprite):
     
     
     def movimentar(self):
-        self.rect.y = self.pos_y + 150*cos(pi + 0.5*(pygame.time.get_ticks()-self.t0)/1000)
-        self.rect.x = self.pos_x + 120*cos(pi + 1*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.y = self.pos_y + 200*cos(pi + 1*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.x = self.pos_x + 150*cos(pi + 1.5*(pygame.time.get_ticks()-self.t0)/1000)
     
 
     def piscar(self):

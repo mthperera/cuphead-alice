@@ -7,6 +7,7 @@ class Coelho():
         self.pos_x = 20
         self.pos_y_inicial = self.pos_y = ALTURA_TELA - 275 - (170-128)
         self.t0 = self.t0_inicio = self.t0_pulo = pygame.time.get_ticks()
+        self.image = LISTA_COELHO_CORRENDO[0]
         self.pulo = False
         self.velocidade_x = 70
         self.velocidade_y = -90
