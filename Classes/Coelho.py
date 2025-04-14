@@ -3,6 +3,8 @@ from math import sqrt, atan, degrees
 
 class Coelho():
     
+    # Essa classe não está herdando o pygame.sprite.Sprite(), pois não é uma entidade,
+    # mas, sim, uma animação.
     def __init__(self):
         self.pos_x = 20
         self.pos_y_inicial = self.pos_y = ALTURA_TELA - 275 - (170-128)
@@ -13,7 +15,10 @@ class Coelho():
         self.velocidade_y = -90
         self.aceleracao_y = 40
 
+
     def movimentar(self):
+
+        # Movimentação simples sem aceleração:
         self.t1 = pygame.time.get_ticks()
         self.dt = (self.t1 - self.t0)/1000
 
@@ -21,8 +26,10 @@ class Coelho():
 
         self.t0 = self.t1
     
+
     def animar(self):
 
+        # Animação do coelho correndo:
         if (pygame.time.get_ticks() - self.t0_inicio) %  500 <= 250:
             self.image = LISTA_COELHO_CORRENDO[0]
         elif (pygame.time.get_ticks() - self.t0_inicio) %  500 <= 500:
@@ -31,6 +38,7 @@ class Coelho():
 
     def pular(self):
 
+        # Animação do coelho correndo e desaparecendo posteriormente:
         self.t1 = pygame.time.get_ticks()
         self.dt_pulo = (self.t1 - self.t0_pulo)/1000
 

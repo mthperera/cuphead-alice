@@ -10,7 +10,6 @@ class Cartinha(pygame.sprite.Sprite):
         self.t0 = pygame.time.get_ticks()
         self.imagem = LISTA_IMAGENS_CARTINHA[0]
         self.image = LISTA_IMAGENS_CARTINHA[0]
-        self.masks = MASKS_CARTINHA
         self.pos_x = LARGURA_TELA - 200 + randint(-150, 50)
         self.pos_y = ALTURA_TELA + randint(-300, -150)
         self.velocidade_x = randint(-80, -10)
@@ -29,6 +28,9 @@ class Cartinha(pygame.sprite.Sprite):
 
         # Movimentação das cartinhas seguindo um alvo -> Curva de Perseguição (modelo matemático).
         # Além disso, evita que elas saiam do mapa.
+
+        # Projeto futuro: usar coordenadas polares para melhorar o movimento da cartinha, pois
+        # a curva de perseguição não é tão precisa.
 
         self.alvo_x = alvo_x
         self.alvo_y = alvo_y
@@ -75,10 +77,8 @@ class Cartinha(pygame.sprite.Sprite):
         # Animando o bater das asas das cartinhas:
         if pygame.time.get_ticks() % 500 >= 250:
             self.imagem = LISTA_IMAGENS_CARTINHA[0]
-            self.mask = MASKS_CARTINHA[0]
         else:
             self.imagem = LISTA_IMAGENS_CARTINHA[1]
-            self.mask = MASKS_CARTINHA[1]
     
 
     def rotacionar(self):

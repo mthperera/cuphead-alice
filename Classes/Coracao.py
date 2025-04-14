@@ -9,7 +9,6 @@ class Coracao(pygame.sprite.Sprite):
         self.t0 = pygame.time.get_ticks()
         self.t0_morte = 0
         self.image = IMAGEM_CORACAO
-        self.masks = MASK_CORACAO
         self.pos_x = randint(50, LARGURA_TELA - 200)
         self.pos_y = randint(-800, -500)
         self.velocidade_y = 200
@@ -20,7 +19,8 @@ class Coracao(pygame.sprite.Sprite):
 
 
     def movimentar(self):
-        
+
+        # Movimentação retilínea simples:
         self.t1 = pygame.time.get_ticks()
         self.delta_t = (self.t1 - self.t0)/1000
 
@@ -31,6 +31,7 @@ class Coracao(pygame.sprite.Sprite):
 
     def animar_morte(self):
 
+        # Animando a morte, de modo a dar um efeito de coração quebrando:
         if (pygame.time.get_ticks() - self.t0_morte) %  1750 <= 250:
             self.image = LISTA_EXPLOSAO_CORACAO[0]
         elif (pygame.time.get_ticks() - self.t0_morte) %  1750 <= 500:

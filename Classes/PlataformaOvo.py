@@ -14,10 +14,13 @@ class PlataformaOvoDee(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 10*cos(2*(pygame.time.get_ticks()-self.t0)/1000)
     
     
     def update(self):
+
         self.movimentar()
 
 
@@ -33,9 +36,12 @@ class PlataformaOvoDum(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 10*cos(2*(pygame.time.get_ticks()-self.t0)/1000)
     
     
     def update(self):
+        
         self.movimentar()
 

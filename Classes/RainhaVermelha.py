@@ -17,6 +17,8 @@ class RainhaVermelha(pygame.sprite.Sprite):
     
     
     def jogar_livro(self):
+
+        # Realizando aremesso de livos a cada certo período em ms:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0_livro) % 3200 <= 800:
@@ -36,7 +38,10 @@ class RainhaVermelha(pygame.sprite.Sprite):
         
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 5 * cos((pygame.time.get_ticks() - self.t0)/1000)
+    
     
     def update(self):
         

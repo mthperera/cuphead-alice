@@ -19,6 +19,9 @@ class Livro(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Esse movimento inicia em direção ao personagem, já que forçamos o vetor velocidade 
+        # ser radial em coordenadas polares.
         self.t1 = pygame.time.get_ticks()
         self.dt = (self.t1 - self.t0)/1000
 
@@ -29,8 +32,10 @@ class Livro(pygame.sprite.Sprite):
 
     
     def update(self):
+        
         self.movimentar()
         
+        # Checando limites do mapa:
         if self.rect.y > ALTURA_TELA or self.rect.y < 0:
             self.kill()
         elif self.rect.x < 0 or self.rect.x > LARGURA_TELA:

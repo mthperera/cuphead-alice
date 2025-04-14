@@ -61,7 +61,9 @@ class RainhaCopas(pygame.sprite.Sprite):
     
 
     def movimentar(self):
-        # Figura de Lissajous -> maior sensação de movimentação real:
+
+        # Ioio fazendo uma Figura de Lissajous por meio de dois MHS ortogonais.
+        # Isso foi feito para dar uma sensação de movimento mais real.
         self.rect.x = self.pos_x_inicial + 50*cos(1*(pygame.time.get_ticks()-self.t0_movimento)/1000)
         self.rect.y = self.pos_y_inicial + 3*cos(2*(pygame.time.get_ticks()-self.t0_movimento)/1000)
 

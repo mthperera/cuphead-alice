@@ -15,6 +15,8 @@ class Peca(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Movimento de queda simples, por meio de movimento retilíneo uniforme.
         self.t1 = pygame.time.get_ticks()
         self.dt = (self.t1 - self.t0)/1000
 
@@ -24,8 +26,10 @@ class Peca(pygame.sprite.Sprite):
 
     
     def update(self):
+
         self.movimentar()
         
+        # Checando limites do mapa:
         if self.rect.y > ALTURA_TELA:
             self.kill()
         elif self.rect.x < 0 or self.rect.x > LARGURA_TELA:

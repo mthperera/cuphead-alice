@@ -14,11 +14,16 @@ class IoioDee(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Ioio fazendo uma Figura de Lissajous por meio de dois MHS ortogonais.
+        # Isso foi feito para dar uma sensação de movimento mais aleatório.
         self.rect.y = self.pos_y + 200*cos(1*(pygame.time.get_ticks()-self.t0)/1000)
         self.rect.x = self.pos_x + 150*cos(1.5*(pygame.time.get_ticks()-self.t0)/1000)
     
 
     def piscar(self):
+
+        # Animação do Ioio piscando:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0) % 2000 <= 1500:
@@ -30,6 +35,7 @@ class IoioDee(pygame.sprite.Sprite):
     def update(self):
         self.movimentar()
         self.piscar()
+
 
 class IoioDum(pygame.sprite.Sprite):
 
@@ -43,11 +49,16 @@ class IoioDum(pygame.sprite.Sprite):
     
     
     def movimentar(self):
+
+        # Ioio fazendo uma Figura de Lissajous por meio de dois MHS ortogonais.
+        # Isso foi feito para dar uma sensação de movimento mais aleatório.
         self.rect.y = self.pos_y + 200*cos(pi + 1*(pygame.time.get_ticks()-self.t0)/1000)
         self.rect.x = self.pos_x + 150*cos(pi + 1.5*(pygame.time.get_ticks()-self.t0)/1000)
     
 
     def piscar(self):
+
+        # Animação do Ioio piscando:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0) % 2000 <= 1500:

@@ -2,6 +2,7 @@ import pygame
 from constantes import *
 
 class Plataforma(pygame.sprite.Sprite):
+
     def __init__(self, x, y):
         super().__init__()
         self.image = PLATAFORMA_PEDRA
@@ -14,6 +15,7 @@ class Plataforma(pygame.sprite.Sprite):
 
     def movimentar(self):
 
+        # Plataforma em movimento simples de queda sem aceleração:
         self.t1 = pygame.time.get_ticks()
         self.dt = (self.t1 - self.t0)/1000
 
@@ -21,9 +23,11 @@ class Plataforma(pygame.sprite.Sprite):
 
         self.t0 = self.t1
 
+
     def update(self):
 
         self.movimentar()
 
+        # Checando limites do mapa:
         if self.rect.y > ALTURA_TELA:
             self.kill()

@@ -12,30 +12,36 @@ class ReiVermelho(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0_pecas = self.t0 = pygame.time.get_ticks()
         self.lancou_pecas = False
-        self.image = pygame.transform.flip(LISTA_REI[0])
+        self.image = pygame.transform.flip(LISTA_REI[0], True, False)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_pecas = pygame.sprite.Group()
     
+
     def invocar_pecas(self):
+
+        # Invocando peças do céu a cada certo tempo em ms:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0_pecas) % 10000 <= 6500:
-            self.image = pygame.transform.flip(LISTA_REI[0])
+            self.image = pygame.transform.flip(LISTA_REI[0], True, False)
             self.lancou_pecas = False
         elif (self.t1 - self.t0_pecas) % 10000 <= 8000:
-            self.image = pygame.transform.flip(LISTA_REI[1])
+            self.image = pygame.transform.flip(LISTA_REI[1], True, False)
             if not self.lancou_pecas:
                 for _ in range(randint(5, 8)):
                     self.grupo_pecas.add(Peca())
                 self.lancou_pecas = True
         elif (self.t1 - self.t0_pecas) % 10000 < 10000:
-            self.image = pygame.transform.flip(LISTA_REI[0])
+            self.image = pygame.transform.flip(LISTA_REI[0], True, False)
 
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 5 * cos((pygame.time.get_ticks() - self.t0)/1000)
+    
     
     def update(self):
         

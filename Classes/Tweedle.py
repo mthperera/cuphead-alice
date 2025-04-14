@@ -15,7 +15,10 @@ class TweedleDee(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
     
+
     def jogar_ovo(self):
+
+        # Lançando ovo a cada certo período em ms:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0_ovo) % 3000 <= 600:
@@ -36,7 +39,10 @@ class TweedleDee(pygame.sprite.Sprite):
         
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 10*cos(2*(pygame.time.get_ticks()-self.t0)/1000)
+    
     
     def update(self):
         
@@ -55,7 +61,10 @@ class TweedleDum(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
     
+
     def jogar_ovo(self):
+
+        # Lançando ovo a cada certo período em ms:
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0_ovo) % 3000 <= 600:
@@ -76,8 +85,11 @@ class TweedleDum(pygame.sprite.Sprite):
         
     
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 10*cos(2*(pygame.time.get_ticks()-self.t0)/1000)
     
+
     def update(self):
         
         self.jogar_ovo()

@@ -3,6 +3,7 @@ from constantes import *
 from math import cos
 
 class PlataformaRainha(pygame.sprite.Sprite):
+
     def __init__(self):
         super().__init__()
         self.image = IMAGEM_PLATAFORMA_RAINHA   
@@ -14,8 +15,11 @@ class PlataformaRainha(pygame.sprite.Sprite):
     
 
     def movimentar(self):
+
+        # Realizando MHS vertical:
         self.rect.y = self.pos_y + 5 * cos((pygame.time.get_ticks() - self.t0)/1000)
 
 
     def update(self):
+        
         self.movimentar()
