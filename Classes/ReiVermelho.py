@@ -12,7 +12,7 @@ class ReiVermelho(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0_pecas = self.t0 = pygame.time.get_ticks()
         self.lancou_pecas = False
-        self.image = LISTA_REI[0]
+        self.image = pygame.transform.flip(LISTA_REI[0])
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_pecas = pygame.sprite.Group()
     
@@ -20,16 +20,16 @@ class ReiVermelho(pygame.sprite.Sprite):
         self.t1 = pygame.time.get_ticks()
 
         if (self.t1 - self.t0_pecas) % 10000 <= 6500:
-            self.image = LISTA_REI[0]
+            self.image = pygame.transform.flip(LISTA_REI[0])
             self.lancou_pecas = False
         elif (self.t1 - self.t0_pecas) % 10000 <= 8000:
-            self.image = LISTA_REI[1]
+            self.image = pygame.transform.flip(LISTA_REI[1])
             if not self.lancou_pecas:
                 for _ in range(randint(5, 8)):
                     self.grupo_pecas.add(Peca())
                 self.lancou_pecas = True
         elif (self.t1 - self.t0_pecas) % 10000 < 10000:
-            self.image = LISTA_REI[0]
+            self.image = pygame.transform.flip(LISTA_REI[0])
 
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         

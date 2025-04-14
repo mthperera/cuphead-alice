@@ -1,19 +1,22 @@
 import pygame
 from constantes import *
+from random import randint
 
-class Coracao():
+class Coracao(pygame.sprite.Sprite):
     
     def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         self.t0 = pygame.time.get_ticks()
         self.t0_morte = 0
         self.image = IMAGEM_CORACAO
         self.masks = MASK_CORACAO
-        self.pos_x = 0
-        self.pos_y = 0
+        self.pos_x = randint(50, LARGURA_TELA - 200)
+        self.pos_y = randint(-800, -500)
         self.velocidade_y = 200
         self.vivo = "Vivo"
         self.vidas = 1
         self.dano = 1
+        self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
 
 
     def movimentar(self):
@@ -21,7 +24,7 @@ class Coracao():
         self.t1 = pygame.time.get_ticks()
         self.delta_t = (self.t1 - self.t0)/1000
 
-        self.pos_y += self.velocidade_y * self.delta_t
+        self.rect.y += self.velocidade_y * self.delta_t
 
         self.t0 = self.t1
     
@@ -44,5 +47,14 @@ class Coracao():
             self.vivo = "Morto"
 
 
-    def desenhar(self, window):
-        window.blit(self.image, (self.pos_x, self.pos_y))
+    def update(self):
+            
+        if self.vivo == "Vivo":
+            self.movimentar()
+        if self.rect.y > ALTURA_TELA - 48 and self.vivo == "Vivo":
+            self.t0_morte = pygame.time.get_ticks()
+            self.vivo = "Morrendo"
+        if self.vivo == "Morrendo":
+            self.animar_morte()
+        if self.vivo == "Morto":
+            self.kill()

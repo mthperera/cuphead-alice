@@ -15,6 +15,7 @@ class RainhaVermelha(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_livros = pygame.sprite.Group()
     
+    
     def jogar_livro(self):
         self.t1 = pygame.time.get_ticks()
 
