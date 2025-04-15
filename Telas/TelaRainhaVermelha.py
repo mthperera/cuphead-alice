@@ -21,8 +21,8 @@ class TelaRainhaVermelha():
         self.grupo_rainha.add(RainhaVermelha(LARGURA_TELA - 210, 68))
         self.grupo_rei = pygame.sprite.Group()
         self.grupo_rei.add(ReiVermelho(50, 70))
-
-        # "Você é apenas uma peça... jogue ou seja descartada."
+        self.musica_tocando = False
+        self.canal_0 = pygame.mixer.Channel(0)
 
 
     def desenha(self, window):
@@ -46,12 +46,19 @@ class TelaRainhaVermelha():
     
 
     def atualiza_estado(self):
+
+        if not self.musica_tocando:
+            self.canal_0.play(MUSICA_FUNDO_RAINHA_VERMELHA, loops=-1)
+            self.musica_tocando = True
+
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 self.tela_atual = "Sair"
+                self.canal_0.stop()
             if evento.type == pygame.KEYDOWN:
                 if evento.key == pygame.K_ESCAPE:
                     self.tela_atual = "Sair"
+                    self.canal_0.stop()
         
         self.grupo_plataforma.update()
         self.grupo_plataforma_rainha.update()
