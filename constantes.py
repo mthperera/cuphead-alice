@@ -34,6 +34,11 @@ MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude 
 
 # CARREGANDO AS IMAGENS:
 
+
+# Bolinho:
+BOLINHO = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho","Bolinho.png")), (48, 48))
+
+
 # Tela Nome:
 FUNDO_TELA_NOME = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Nome","Fundo_Tela_Nome_01.png")), (LARGURA_TELA, ALTURA_TELA))
 
