@@ -1,18 +1,22 @@
 import pygame
 from constantes import *
 from Classes.Coelho import Coelho
+from Classes.Alice import Alice
 from random import choice
 
-class TelaCoelho():
+
+class TelaCoelho:
 
     def __init__(self):
         self.tela_atual = "TelaCoelho"
         self.coelho = Coelho()
-        self.t0 = pygame.time.get_ticks()
+        self.t0 = self.t0_atacou_bolinho = self.t0_atacou_superbolo = pygame.time.get_ticks()
         self.fundo = choice(LISTA_FUNDO_COELHO)
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
-
+        self.grupo_alice = pygame.sprite.Group()
+        self.grupo_alice.add(Alice(400, ALTURA_TELA - 150))
+        
 
     def desenha(self, window):
         window.fill(BRANCO)
@@ -20,6 +24,10 @@ class TelaCoelho():
         window.blit(self.fundo, (0, 0))
 
         self.coelho.desenhar(window)
+        self.grupo_alice.draw(window)
+
+        for alice in self.grupo_alice:
+            alice.grupo_bolinhos.draw(window)
 
         pygame.display.flip()
     
@@ -30,7 +38,8 @@ class TelaCoelho():
             self.canal_0.play(MUSICA_FUNDO_COELHO, loops=-1)
             self.musica_tocando = True
 
-        for evento in pygame.event.get():
+        lista_eventos = pygame.event.get() 
+        for evento in lista_eventos:
             if evento.type == pygame.QUIT:
                 self.canal_0.stop()
                 self.tela_atual = "Sair"
@@ -38,9 +47,14 @@ class TelaCoelho():
                 if evento.key == pygame.K_ESCAPE:
                     self.canal_0.stop()
                     self.tela_atual = "Sair"
-        
-        
+
+                
         self.coelho.movimentar()
+        self.grupo_alice.update(lista_eventos)
+
+        for alice in self.grupo_alice:
+            alice.grupo_bolinhos.update()
+        
 
         # Ponto em que o pulo do coelho começa:
         if self.coelho.pos_x > 2*LARGURA_TELA/5 and not self.coelho.pulo:
@@ -48,6 +62,11 @@ class TelaCoelho():
             self.coelho.pos_y -= 30
             self.coelho.i = 0
             self.coelho.t0_pulo = pygame.time.get_ticks()
+        
+        for alice in self.grupo_alice:
+            if alice.rect.x > 5.5 * LARGURA_TELA // 9:
+                self.tela_atual = "TelaCartas"
+                self.canal_0.stop()
 
         if not self.coelho.pulo:
             self.coelho.animar()
@@ -56,5 +75,4 @@ class TelaCoelho():
 
 
         return True
-    
     

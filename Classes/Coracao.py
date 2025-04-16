@@ -6,11 +6,11 @@ class Coracao(pygame.sprite.Sprite):
     
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.t0 = pygame.time.get_ticks()
+        self.t0 = self.t0_animar = pygame.time.get_ticks()
         self.t0_morte = 0
-        self.image = IMAGEM_CORACAO
+        self.image = LISTA_CORACAO[0]
         self.pos_x = randint(50, LARGURA_TELA - 200)
-        self.pos_y = randint(-800, -500)
+        self.pos_y = randint(-1000, -500)
         self.velocidade_y = 200
         self.vivo = "Vivo"
         self.vidas = 1
@@ -21,12 +21,19 @@ class Coracao(pygame.sprite.Sprite):
     def movimentar(self):
 
         # Movimentação retilínea simples:
-        self.t1 = pygame.time.get_ticks()
-        self.delta_t = (self.t1 - self.t0)/1000
+        now = pygame.time.get_ticks()
+        self.delta_t = (now - self.t0)/1000
 
         self.rect.y += self.velocidade_y * self.delta_t
 
-        self.t0 = self.t1
+        self.t0 = now
+    
+    def animar(self):
+
+        if (pygame.time.get_ticks() - self.t0_animar) % 1200 < 800:
+            self.image = LISTA_CORACAO[0]
+        else:
+            self.image = LISTA_CORACAO[1]
     
 
     def animar_morte(self):
@@ -52,6 +59,7 @@ class Coracao(pygame.sprite.Sprite):
             
         if self.vivo == "Vivo":
             self.movimentar()
+            self.animar()
         if self.rect.y > ALTURA_TELA - 48 and self.vivo == "Vivo":
             self.t0_morte = pygame.time.get_ticks()
             self.vivo = "Morrendo"

@@ -34,6 +34,40 @@ MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude 
 
 # CARREGANDO AS IMAGENS:
 
+# Alice:
+LISTA_ALICE_BOLINHO = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","0.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","1.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","2.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","3.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","4.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","5.png")), (113, 170)),
+]
+LISTA_ALICE_CORRENDO = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","0.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","1.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","2.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","3.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","4.png")), (113, 170)),
+]
+LISTA_ALICE_PULANDO = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","0.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","1.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","2.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","3.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","4.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","5.png")), (113, 170)),
+]
+LISTA_ALICE_SUPER_BOLO = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","0.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","1.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","2.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","3.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","4.png")), (113, 170)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","5.png")), (113, 170)),
+]
+
+
 
 # Bolinho:
 BOLINHO = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho","Bolinho.png")), (48, 48))
@@ -105,7 +139,10 @@ LISTA_IMAGENS_CARTINHA = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas", "Cartinha_Cima.png")), (48, 48)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas", "Cartinha_Baixo.png")), (48, 48)),
 ]
-IMAGEM_CORACAO = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Coracao.png")), (32, 48))
+LISTA_CORACAO = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Coracao_01.png")), (48, 48)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Coracao_02.png")), (48, 48)),
+]
 LISTA_EXPLOSAO_CORACAO = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Coracao_01.png")), (32, 48)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Coracao_02.png")), (32, 48)),
