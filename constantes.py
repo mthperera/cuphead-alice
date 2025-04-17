@@ -38,37 +38,21 @@ MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude 
 # CARREGANDO AS IMAGENS:
 
 # Alice:
-LISTA_ALICE_BOLINHO = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","0.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","1.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","2.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","3.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","4.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho","5.png")), (113, 170)),
-]
-LISTA_ALICE_CORRENDO = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","0.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","1.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","2.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","3.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo","4.png")), (113, 170)),
-]
-LISTA_ALICE_PULANDO = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","0.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","1.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","2.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","3.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","4.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando","5.png")), (113, 170)),
-]
-LISTA_ALICE_SUPER_BOLO = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","0.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","1.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","2.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","3.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","4.png")), (113, 170)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo","5.png")), (113, 170)),
-]
+LISTA_ALICE_BOLINHO = list()
+for i in range(1, 11):
+    LISTA_ALICE_BOLINHO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho",f"{i}.png")), (113, 170)))
+
+LISTA_ALICE_CORRENDO = list()
+for i in range(1, 19):
+    LISTA_ALICE_CORRENDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo",f"{i}.png")), (113, 170)))
+
+LISTA_ALICE_PULANDO = list()
+for i in range(1, 26):
+    LISTA_ALICE_PULANDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando",f"{i}.png")), (113, 170)))
+
+LISTA_ALICE_SUPER_BOLO = list()
+for i in range(1, 13):
+    LISTA_ALICE_SUPER_BOLO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo",f"{i}.png")), (113, 170)))
 
 
 
