@@ -15,7 +15,7 @@ class TelaCoelho:
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
         self.grupo_alice = pygame.sprite.Group()
-        self.grupo_alice.add(Alice(400, ALTURA_TELA - 150))
+        self.grupo_alice.add(Alice(400, ALTURA_TELA - 140))
         
 
     def desenha(self, window):

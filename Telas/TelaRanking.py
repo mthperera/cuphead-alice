@@ -28,8 +28,8 @@ class TelaRanking():
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
         self.jogador = {
-            "Nome" : "AAAAAAAAAA",
-            "Posição" : 8
+            "Nome" : "JAOOO",
+            "Posição" : 1
         }
 
 

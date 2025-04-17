@@ -20,8 +20,8 @@ class Jogo():
     # Além disso, esse método ainda permite que a troca de tela, por exemplo,
     # voltando para uma anterior seja feito por meio do: ' while self.tela_atual != "Sair" '.
     def __init__(self):
-        self.tela_atual = "TelaRanking"
-        self.nivel_atual = 1
+        self.tela_atual = "TelaCoelho"
+        self.nivel_atual = 2
         self.window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
         self.tela_inicial = TelaInicial()
         self.nome = None

@@ -39,20 +39,20 @@ MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude 
 
 # Alice:
 LISTA_ALICE_BOLINHO = list()
-for i in range(1, 11):
-    LISTA_ALICE_BOLINHO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho",f"{i}.png")), (113, 170)))
+for i in range(1, 12):
+    LISTA_ALICE_BOLINHO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho",f"{i}.png")), (170, 255)))
 
 LISTA_ALICE_CORRENDO = list()
-for i in range(1, 19):
-    LISTA_ALICE_CORRENDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo",f"{i}.png")), (113, 170)))
+for i in range(1, 20):
+    LISTA_ALICE_CORRENDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo",f"{i}.png")), (170, 255)))
 
 LISTA_ALICE_PULANDO = list()
-for i in range(1, 26):
-    LISTA_ALICE_PULANDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando",f"{i}.png")), (113, 170)))
+for i in range(1, 9):
+    LISTA_ALICE_PULANDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando",f"{i}.png")), (170, 255)))
 
 LISTA_ALICE_SUPER_BOLO = list()
-for i in range(1, 13):
-    LISTA_ALICE_SUPER_BOLO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo",f"{i}.png")), (113, 170)))
+for i in range(1, 12):
+    LISTA_ALICE_SUPER_BOLO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo",f"{i}.png")), (170, 255)))
 
 
 
@@ -74,10 +74,6 @@ FUNDO_TELA_INICAL = [
 # Tela Coelho:
 LISTA_FUNDO_COELHO = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Fundo_Coelho_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Fundo_Coelho_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Fundo_Coelho_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Fundo_Coelho_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Fundo_Coelho_02.png")), (LARGURA_TELA, ALTURA_TELA)),
 ]
 LISTA_COELHO_CORRENDO  = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Coelho","Coelho_Correndo_02.png")), (170, 170)),

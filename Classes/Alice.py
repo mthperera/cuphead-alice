@@ -28,23 +28,14 @@ class Alice(pygame.sprite.Sprite):
 
     def ataque_bolinho(self):
 
-        if (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 100:
-            self.image = LISTA_ALICE_BOLINHO[0]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 200:
-            self.image = LISTA_ALICE_BOLINHO[1]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 300:
-            self.image = LISTA_ALICE_BOLINHO[2]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 400:
-            self.image = LISTA_ALICE_BOLINHO[3]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 500:
-            self.image = LISTA_ALICE_BOLINHO[4]
+        delta_t = pygame.time.get_ticks() - self.t0_bolinho
+        indice = delta_t // 40
+        if indice == 6:
             if not self.atacou_bolinho:
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, self.angulo_bolinho))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, self.angulo_bolinho))
                 self.atacou_bolinho = True
-            # fazer condições pro bolinho pra cada lado
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 750 < 600:
-            self.image = LISTA_ALICE_BOLINHO[5]
-        else:
+                # fazer condições pro bolinho pra cada lado
+        elif indice > 10:
             self.image = LISTA_ALICE_SUPER_BOLO[0]
             self.atacando_bolinho = False
             self.atacou_bolinho = False
@@ -58,36 +49,34 @@ class Alice(pygame.sprite.Sprite):
                 else:
                     self.andando = False
                     self.direcao = None
+        else:
+            self.image = LISTA_ALICE_BOLINHO[indice]
         
-        if 90 < self.angulo_bolinho < 270:
+        if 0 <= self.angulo_bolinho <= 90 or 270 <= self.angulo_bolinho <= 360:
             self.image = pygame.transform.flip(self.image, True, False)
+        
     
 
     def super_bolo(self):
 
-        if (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 250:
-            self.image = LISTA_ALICE_SUPER_BOLO[0]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 500:
-            self.image = LISTA_ALICE_SUPER_BOLO[1]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 750:
-            self.image = LISTA_ALICE_SUPER_BOLO[2]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 1000:
-            self.image = LISTA_ALICE_SUPER_BOLO[3]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 1250:
-            self.image = LISTA_ALICE_SUPER_BOLO[4]
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 1500:
-            self.image = LISTA_ALICE_SUPER_BOLO[5]
+        delta_t = pygame.time.get_ticks() - self.t0_superbolo
+        indice = delta_t // 50
+        if indice == 8:
             if not self.atacou_superbolo:
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, 30))
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, 60))
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, 90))
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, -30))
-                self.grupo_bolinhos.add(Bolinho(self.rect.x, self.rect.y, -60))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 0))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 30))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 60))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 90))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 120))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 150))
+                self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, 180))
                 self.atacou_superbolo = True
-        elif (pygame.time.get_ticks() - self.t0_bolinho) % 2000 < 1750: 
-            self.image = self.image = LISTA_ALICE_SUPER_BOLO[0]
+        if indice > 10:
             self.atacando_superbolo = False
             self.atacou_superbolo = False
+        
+        else:
+            self.image = LISTA_ALICE_SUPER_BOLO[indice]
 
 
     def andar(self, direcao):
@@ -102,24 +91,17 @@ class Alice(pygame.sprite.Sprite):
 
         self.t0_andar_movimentacao = now
         
-        if (pygame.time.get_ticks() - self.t0_andar_animacao) % 750 < 125:
-            self.image = LISTA_ALICE_CORRENDO[0]
-        elif (pygame.time.get_ticks() - self.t0_andar_animacao) % 750 < 250:
-            self.image = LISTA_ALICE_CORRENDO[1]
-        elif (pygame.time.get_ticks() - self.t0_andar_animacao) % 750 < 375:
-            self.image = LISTA_ALICE_CORRENDO[2]
-        elif (pygame.time.get_ticks() - self.t0_andar_animacao) % 750 < 500:
-            self.image = LISTA_ALICE_CORRENDO[3]
-        elif (pygame.time.get_ticks() - self.t0_andar_animacao) % 750 < 625:
-            self.image = LISTA_ALICE_CORRENDO[4]
-        else:
-            self.image = LISTA_ALICE_CORRENDO[0]
+
+        delta_t = (pygame.time.get_ticks() - self.t0_andar_animacao) % (70*18)
+        indice = delta_t // 70
+        self.image = LISTA_ALICE_CORRENDO[indice]
+
 
         if direcao == "Direita":
             self.image = pygame.transform.rotate(self.image, -10)
+            self.image = pygame.transform.flip(self.image, True, False)
         elif direcao == "Esquerda":
             self.image = pygame.transform.rotate(self.image, -10)
-            self.image = pygame.transform.flip(self.image, True, False)
 
     
     def pular_movimentacao(self, direcao):
@@ -146,8 +128,8 @@ class Alice(pygame.sprite.Sprite):
     
     def pular_animacao(self, direcao):
 
-        delta_t = (pygame.time.get_ticks() - self.t0_pular_animacao) % 2000
-        indice = delta_t // 250 if delta_t < 1000 else -1 - (-1000 + delta_t) // 250
+        delta_t = (pygame.time.get_ticks() - self.t0_bolinho) % (8*250)
+        indice = delta_t // 250
         self.image = LISTA_ALICE_PULANDO[indice]
         
         if direcao == "Direita":
@@ -184,10 +166,10 @@ class Alice(pygame.sprite.Sprite):
                 if evento.button == 2 and pygame.time.get_ticks() - self.t0_atacou_bolinho > 1000:
                     self.atacando_bolinho = True
                     self.angulo_bolinho = self.angulo
-                    self.t0_atacou_bolinho = pygame.time.get_ticks()
+                    self.t0_atacou_bolinho = self.t0_bolinho = pygame.time.get_ticks()
                 if evento.button == 3 and pygame.time.get_ticks() - self.t0_atacou_superbolo > 5000:
                     self.atacando_superbolo = True
-                    self.t0_atacou_superbolo = pygame.time.get_ticks()
+                    self.t0_atacou_superbolo = self.t0_superbolo = pygame.time.get_ticks()
                 if evento.button == 0:
                     if not self.pulando:
                         self.t0_pular_animacao = self.t0_pular_movimentacao = pygame.time.get_ticks()

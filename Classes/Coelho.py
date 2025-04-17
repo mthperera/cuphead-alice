@@ -11,9 +11,10 @@ class Coelho():
         self.t0 = self.t0_inicio = self.t0_pulo = pygame.time.get_ticks()
         self.image = LISTA_COELHO_CORRENDO[0]
         self.pulo = False
-        self.velocidade_x = 70
-        self.velocidade_y = -90
-        self.aceleracao_y = 40
+        self.velocidade_x = 300
+        self.velocidade_x_fim = 700
+        self.velocidade_y = -500
+        self.aceleracao_y = 1000
 
 
     def movimentar(self):
@@ -46,8 +47,8 @@ class Coelho():
         self.pos_y += self.velocidade_y * self.dt_pulo
 
         if self.pos_y > self.pos_y_inicial - 30:
-            self.velocidade_x = 40
-            self.image.set_alpha(255- self.i*20)
+            self.velocidade_x = self.velocidade_x_fim
+            self.image.set_alpha(255- self.i*50)
             self.i += 1
         else:
             self.image = LISTA_COELHO_PULANDO[0]
