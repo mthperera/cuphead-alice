@@ -17,6 +17,9 @@ LARGURA_TELA, ALTURA_TELA = info.current_w, info.current_h
 # Carregando a fonte para o teclado digital:
 pygame.font.init()
 FONTE_TECLA = pygame.font.Font(os.path.join("Assets/Fontes", "DejaVuSans.ttf"), 36)
+FONTE_RANKING_22 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 22)
+FONTE_RANKING_26 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 26)
+FONTE_RANKING_28 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 28)
 
 
 # Carregando as músicas de fundo e os efeitos sonoros:
@@ -225,3 +228,7 @@ FUNDO_GAME_OVER = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_03.png")), (LARGURA_TELA, ALTURA_TELA)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_04.png")), (LARGURA_TELA, ALTURA_TELA)),
 ]
+
+
+# Tela Ranking:
+FUNDO_TELA_RANKING = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Ranking","Fundo_Tela_Ranking.png")), (LARGURA_TELA, ALTURA_TELA))

@@ -1,0 +1,7 @@
+[
+    {"Nome": "AAAAAAAAAAAAAAA", "Nível": 3, "Tempo": 120, "Dano": 100},
+    {"Nome": "Chapeleiro77", "Nível": 3, "Tempo": 110, "Dano": 95},
+    {"Nome": "RainhaDoidinha", "Nível": 2, "Tempo": 300, "Dano": 80},
+    {"Nome": "GatoLouco", "Nível": 2, "Tempo": 250, "Dano": 85},
+    {"Nome": "Tweedle", "Nível": 1, "Tempo": 500, "Dano": 70}
+]
