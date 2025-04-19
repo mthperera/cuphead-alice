@@ -11,6 +11,7 @@ class Peca(pygame.sprite.Sprite):
         self.velocidade_y = 200
         self.t0 = pygame.time.get_ticks()
         self.image = choice(LISTA_PECAS)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -34,3 +35,5 @@ class Peca(pygame.sprite.Sprite):
             self.kill()
         elif self.rect.x < 0 or self.rect.x > LARGURA_TELA:
             self.kill()
+        
+        self.mask = pygame.mask.from_surface(self.image)

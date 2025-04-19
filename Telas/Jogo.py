@@ -20,8 +20,9 @@ class Jogo():
     # Além disso, esse método ainda permite que a troca de tela, por exemplo,
     # voltando para uma anterior seja feito por meio do: ' while self.tela_atual != "Sair" '.
     def __init__(self):
-        self.tela_atual = "TelaCoelho"
+        self.tela_atual = "TelaRainhaCopas"
         self.nivel_atual = 2
+        self.dano = 0
         self.window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
         self.tela_inicial = TelaInicial()
         self.nome = None
@@ -68,6 +69,8 @@ class Jogo():
                     if tela.tela_atual != "TelaCoelho":
                         pygame.event.clear()
                         self.tela_atual = tela.tela_atual
+                        self.nivel_atual = tela.nivel
+                        self.dano += tela.dano
                         break
 
             if self.tela_atual == "TelaCartas":
@@ -89,6 +92,8 @@ class Jogo():
                     if tela.tela_atual != "TelaRainhaCopas":
                         pygame.event.clear()
                         self.tela_atual = tela.tela_atual
+                        self.nivel_atual = tela.nivel
+                        self.dano += tela.dano
                         break
 
             if self.tela_atual == "TelaTweedle":
@@ -99,6 +104,8 @@ class Jogo():
                     if tela.tela_atual != "TelaTweedle":
                         pygame.event.clear()
                         self.tela_atual = tela.tela_atual
+                        self.nivel_atual = tela.nivel
+                        self.dano += tela.dano
                         break
 
             if self.tela_atual == "TelaRainhaVermelha":
@@ -109,6 +116,8 @@ class Jogo():
                     if tela.tela_atual != "TelaRainhaVermelha":
                         pygame.event.clear()
                         self.tela_atual = tela.tela_atual
+                        self.nivel_atual = tela.nivel
+                        self.dano += tela.dano
                         break
             
             if self.tela_atual == "TelaGameOver":

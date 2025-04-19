@@ -6,23 +6,25 @@ from Classes.Coracao import Coracao
 
 class RainhaCopas(pygame.sprite.Sprite):
 
-    def __init__(self):
+    def __init__(self, alice):
         pygame.sprite.Sprite.__init__(self)
         self.image = LISTA_INVOCAR_CORACAO[2]
+        self.mask = pygame.mask.from_surface(self.image)
         self.grupo_cartinhas = pygame.sprite.Group()
         self.grupo_coracoes = pygame.sprite.Group()
         self.t0_movimento = self.t0 = pygame.time.get_ticks()
-        self.pos_x_inicial = LARGURA_TELA - 300
+        self.pos_x_inicial = LARGURA_TELA - 350
         self.pos_x = self.pos_x_inicial
-        self.pos_y_inicial = ALTURA_TELA - 315
+        self.pos_y_inicial = ALTURA_TELA - 440
         self.pos_y = self.pos_y_inicial
-        self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
+        self.rect = self.image.get_rect(midbottom=(self.pos_x, self.pos_y))
         self.ataque_coracao = "Sem ataque"
         self.t0_ataque = 0
         self.delta_t_remove = 15000
         self.delta_t_acel = 5000
         self.delta_t_coracao = 5000
-        self.vida = 30
+        self.alice = alice
+        self.vidas = 30
         self.dano = 1
     
 
@@ -72,8 +74,8 @@ class RainhaCopas(pygame.sprite.Sprite):
 
         # Spawnando cartinhas a cada self.delta_t_acel ms:
         if (pygame.time.get_ticks() - self.t0) // self.delta_t_acel > 0 and (pygame.time.get_ticks()- self.t0) < 100000:
-            for _ in range(5):
-                cartinha = Cartinha()
+            for _ in range(3):
+                cartinha = Cartinha(self.alice)
                 self.grupo_cartinhas.add(cartinha)
 
             self.delta_t_acel += 5000
@@ -81,7 +83,7 @@ class RainhaCopas(pygame.sprite.Sprite):
         # Spawnando coracoes a cada self.delta_t_coracao ms:
         if (pygame.time.get_ticks() - self.t0 - 30000) // self.delta_t_coracao > 0:
             self.ataque_coracao = "Atacando"
-            for _ in range(8):
+            for _ in range(6):
                 coracao = Coracao()
                 self.grupo_coracoes.add(coracao)
                 self.t0_ataque = pygame.time.get_ticks()
@@ -105,3 +107,5 @@ class RainhaCopas(pygame.sprite.Sprite):
         self.movimentar()
         if self.ataque_coracao == "Atacando":
                 self.invocar_coracoes()
+        
+        self.mask = pygame.mask.from_surface(self.image)

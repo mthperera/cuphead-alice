@@ -99,7 +99,7 @@ LISTA_CARTA_VIRADA = [
 
 # Tela Rainha de Copas:
 IMAGEM_FUNDO_RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Fundo_Rainha_Copas_4.png")), (LARGURA_TELA, ALTURA_TELA))
-RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Rainha_Copas.png")), (170, 256))
+RAINHA_COPAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Rainha_Copas.png")), (255, 384))
 LISTA_EXPLOSAO_CARTINHA  = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Cartinha_01.png")), (32, 48)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Cartinha_02.png")), (32, 48)),
@@ -109,13 +109,13 @@ LISTA_EXPLOSAO_CARTINHA  = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Cartinha_06.png")), (32, 48)),
 ]
 LISTA_INVOCAR_CORACAO  = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_01.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_02.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_03.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_04.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_05.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_06.png")), (170, 256)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_07.png")), (170, 256)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_01.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_02.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_03.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_04.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_05.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_06.png")), (255, 384)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_07.png")), (255, 384)),
 ]
 
 LISTA_IMAGENS_CARTINHA = [
@@ -183,12 +183,6 @@ LISTA_LIVROS = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Livro_03.png")), (48, 48)),
 ]
 LISTA_PECAS = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão.png")), (40, 60)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão.png")), (40, 60)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão.png")), (40, 60)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Bispo.png")), (40, 60)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Torre.png")), (40, 60)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Cavalo.png")), (40, 60)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão_Cinza.png")), (40, 60)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão_Cinza.png")), (40, 60)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaVermelha","Peão_Cinza.png")), (40, 60)),

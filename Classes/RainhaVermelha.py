@@ -12,8 +12,10 @@ class RainhaVermelha(pygame.sprite.Sprite):
         self.t0_livro = self.t0 = pygame.time.get_ticks()
         self.lancou_livro = False
         self.image = LISTA_RAINHA_VERMELHA[0]
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_livros = pygame.sprite.Group()
+        self.vidas = 20
     
     
     def jogar_livro(self):
@@ -47,4 +49,9 @@ class RainhaVermelha(pygame.sprite.Sprite):
         
         self.jogar_livro()
         self.movimentar()
+
+        if self.vidas <= 0:
+            self.kill()
+        
+        self.mask = pygame.mask.from_surface(self.image)
 

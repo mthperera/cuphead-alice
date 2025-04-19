@@ -6,7 +6,8 @@ class PlataformaRei(pygame.sprite.Sprite):
     
     def __init__(self):
         super().__init__()
-        self.image = IMAGEM_PLATAFORMA_REI 
+        self.image = IMAGEM_PLATAFORMA_REI
+        self.mask = pygame.mask.from_surface(self.image)
         self.velocidade_y = 120
         self.pos_x = 0
         self.pos_y = 200
@@ -23,3 +24,5 @@ class PlataformaRei(pygame.sprite.Sprite):
     def update(self):
 
         self.movimentar()
+
+        self.mask = pygame.mask.from_surface(self.image)

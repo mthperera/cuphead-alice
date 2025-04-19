@@ -5,16 +5,19 @@ from random import randint
 
 class Cartinha(pygame.sprite.Sprite):
     
-    def __init__(self):
+    def __init__(self, alice):
         pygame.sprite.Sprite.__init__(self)
         self.t0 = pygame.time.get_ticks()
         self.imagem = LISTA_IMAGENS_CARTINHA[0]
         self.image = LISTA_IMAGENS_CARTINHA[0]
+        self.mask = pygame.mask.from_surface(self.image)
         self.pos_x = LARGURA_TELA - 200 + randint(-150, 50)
         self.pos_y = ALTURA_TELA + randint(-300, -150)
+        self.alvo_x, self.pos_y = (0, 0)
         self.velocidade_x = randint(-80, -10)
         self.velocidade_y = randint(-50, -10)
-        self.aceleracao = 50
+        self.aceleracao = 30
+        self.alice = alice
         self.angulo = 0
         self.vivo = "Vivo"
         self.t0_morte = 0
@@ -24,7 +27,7 @@ class Cartinha(pygame.sprite.Sprite):
         self.delta_t_acel = 5000
 
 
-    def movimentar_acelerando(self, alvo_x, alvo_y):
+    def movimentar_acelerando(self):
 
         # Movimentação das cartinhas seguindo um alvo -> Curva de Perseguição (modelo matemático).
         # Além disso, evita que elas saiam do mapa.
@@ -32,8 +35,8 @@ class Cartinha(pygame.sprite.Sprite):
         # Projeto futuro: usar coordenadas polares para melhorar o movimento da cartinha, pois
         # a curva de perseguição não é tão precisa.
 
-        self.alvo_x = alvo_x
-        self.alvo_y = alvo_y
+        self.alvo_x = self.alice.rect.centerx
+        self.alvo_y = self.alice.rect.centery
 
         self.delta_x = self.alvo_x - self.rect.centerx
         self.delta_y = self.alvo_y - self.rect.centery
@@ -84,6 +87,8 @@ class Cartinha(pygame.sprite.Sprite):
     def rotacionar(self):
 
         # Rotacionando a cartinha, a fim de parecer que ela se move em direção ao jogador:
+        self.alvo_x = self.alice.rect.centerx
+        self.alvo_y = self.alice.rect.centery
         self.delta_x = self.alvo_x - self.rect.centerx
         self.delta_y = self.alvo_y - self.rect.centery
 
@@ -102,8 +107,9 @@ class Cartinha(pygame.sprite.Sprite):
         except:
             self.angulo = 0
         
+        antigo_centro = self.rect.center
         self.image = pygame.transform.rotate(self.imagem, self.angulo)
-        self.rect = self.image.get_rect(topleft=(self.rect.x, self.rect.y))
+        self.rect = self.image.get_rect(center = antigo_centro)
     
 
     def animar_morte(self):
@@ -139,3 +145,5 @@ class Cartinha(pygame.sprite.Sprite):
             self.kill()
 
         self.rotacionar()
+
+        self.mask = pygame.mask.from_surface(self.image)

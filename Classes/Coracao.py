@@ -9,6 +9,7 @@ class Coracao(pygame.sprite.Sprite):
         self.t0 = self.t0_animar = pygame.time.get_ticks()
         self.t0_morte = 0
         self.image = LISTA_CORACAO[0]
+        self.mask = pygame.mask.from_surface(self.image)
         self.pos_x = randint(50, LARGURA_TELA - 200)
         self.pos_y = randint(-1000, -500)
         self.velocidade_y = 200
@@ -67,3 +68,5 @@ class Coracao(pygame.sprite.Sprite):
             self.animar_morte()
         if self.vivo == "Morto":
             self.kill()
+        
+        self.mask = pygame.mask.from_surface(self.image)

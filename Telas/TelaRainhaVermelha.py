@@ -5,22 +5,31 @@ from Classes.PlataformaRainha import PlataformaRainha
 from Classes.PlataformaRei import PlataformaRei
 from Classes.RainhaVermelha import RainhaVermelha
 from Classes.ReiVermelho import ReiVermelho
+from Classes.Alice import *
 
 class TelaRainhaVermelha():
 
     def __init__(self):
         self.tela_atual = "TelaRainhaVermelha"
         self.t0 = pygame.time.get_ticks()
+        self.grupo_alice = pygame.sprite.Group()
+        self.alice = AliceRainhaVermelha(LARGURA_TELA//2, ALTURA_TELA//2 - 110)
+        self.alice.tela_atual = "TelaRainhaVermelha"
+        self.grupo_alice.add(self.alice)
         self.grupo_plataforma = pygame.sprite.Group()
         self.grupo_plataforma.add(PlataformaXadrez())
         self.grupo_plataforma_rainha = pygame.sprite.Group()
-        self.grupo_plataforma_rainha.add(PlataformaRainha())
+        self.plataforma_rainha = PlataformaRainha()
+        self.grupo_plataforma_rainha.add(self.plataforma_rainha)
         self.grupo_plataforma_rei = pygame.sprite.Group()
-        self.grupo_plataforma_rei.add(PlataformaRei())
+        self.plataforma_rei = PlataformaRei()
+        self.grupo_plataforma_rei.add(self.plataforma_rei)
         self.grupo_rainha = pygame.sprite.Group()
-        self.grupo_rainha.add(RainhaVermelha(LARGURA_TELA - 210, 68))
+        self.rainha_vermelha = RainhaVermelha(LARGURA_TELA - 210, 68)
+        self.grupo_rainha.add(self.rainha_vermelha)
         self.grupo_rei = pygame.sprite.Group()
-        self.grupo_rei.add(ReiVermelho(50, 70))
+        self.rei_vermelho = ReiVermelho(50, 70)
+        self.grupo_rei.add(self.rei_vermelho)
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
 
@@ -40,6 +49,8 @@ class TelaRainhaVermelha():
             rainha.grupo_livros.draw(window)
         for rei in self.grupo_rei:
             rei.grupo_pecas.draw(window)
+        self.grupo_alice.draw(window)
+        self.alice.grupo_bolinhos.draw(window)
         
 
         pygame.display.flip()
@@ -50,8 +61,9 @@ class TelaRainhaVermelha():
         if not self.musica_tocando:
             self.canal_0.play(MUSICA_FUNDO_RAINHA_VERMELHA, loops=-1)
             self.musica_tocando = True
-
-        for evento in pygame.event.get():
+        
+        lista_eventos = pygame.event.get()
+        for evento in lista_eventos:
             if evento.type == pygame.QUIT:
                 self.tela_atual = "Sair"
                 self.canal_0.stop()
@@ -59,6 +71,31 @@ class TelaRainhaVermelha():
                 if evento.key == pygame.K_ESCAPE:
                     self.tela_atual = "Sair"
                     self.canal_0.stop()
+        
+
+        if len(self.grupo_rainha) > 0:
+            if pygame.sprite.spritecollide(self.alice, self.rainha_vermelha.grupo_livros, True, pygame.sprite.collide_mask):
+                if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
+                    self.alice.vidas -= 1
+                    self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+            if pygame.sprite.spritecollide(self.rainha_vermelha, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.rainha_vermelha.vidas -= 1
+            if pygame.sprite.spritecollide(self.plataforma_rainha, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.rainha_vermelha.vidas -= 1
+            if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rainha_vermelha.grupo_livros, True, True, pygame.sprite.collide_mask):
+                pass
+
+        if len(self.grupo_rei) > 0:
+            if pygame.sprite.spritecollide(self.alice, self.rei_vermelho.grupo_pecas, True, pygame.sprite.collide_mask):
+                if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
+                    self.alice.vidas -= 1
+                    self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+            if pygame.sprite.spritecollide(self.rei_vermelho, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.rei_vermelho.vidas -= 1
+            if pygame.sprite.spritecollide(self.plataforma_rei, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.rei_vermelho.vidas -= 1
+            if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rei_vermelho.grupo_pecas, True, True, pygame.sprite.collide_mask):
+                pass
         
         self.grupo_plataforma.update()
         self.grupo_plataforma_rainha.update()
@@ -69,6 +106,27 @@ class TelaRainhaVermelha():
             rainha.grupo_livros.update()
         for rei in self.grupo_rei:
             rei.grupo_pecas.update()
+        self.alice.update(lista_eventos)
+        self.alice.grupo_bolinhos.update()
+        self.alice.image = pygame.transform.scale(self.alice.image, (128, 192))
+
+        if self.alice.rect.centerx > 3.5*ALTURA_TELA//8 + LARGURA_TELA//2 or self.alice.rect.centerx < - 3.5*ALTURA_TELA//8 + 65 + LARGURA_TELA//2:
+            if not self.alice.caindo:
+                self.alice.t0_caindo = pygame.time.get_ticks()
+                self.alice.caindo = True
+            self.alice.cair()
+        else:
+            self.alice.movimentar_plataforma()
+
+        if self.alice.vidas <= 0:
+            self.tela_atual = "TelaGameOver"
+            self.nivel = 2
+            self.dano = 20 - self.rainha_vermelha.vidas + 20 - self.rei_vermelho.vidas
+        
+        if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
+            self.tela_atual = "TelaCartas"
+            self.nivel = 3
+            self.dano = 40
 
         return True
     

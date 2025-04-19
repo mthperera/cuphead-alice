@@ -6,7 +6,8 @@ class PlataformaRainha(pygame.sprite.Sprite):
 
     def __init__(self):
         super().__init__()
-        self.image = IMAGEM_PLATAFORMA_RAINHA   
+        self.image = IMAGEM_PLATAFORMA_RAINHA
+        self.mask = pygame.mask.from_surface(self.image)
         self.velocidade_y = 120
         self.pos_x = LARGURA_TELA - 256
         self.pos_y = 200
@@ -23,3 +24,5 @@ class PlataformaRainha(pygame.sprite.Sprite):
     def update(self):
         
         self.movimentar()
+
+        self.mask = pygame.mask.from_surface(self.image)
