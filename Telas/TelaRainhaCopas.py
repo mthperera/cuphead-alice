@@ -26,6 +26,10 @@ class TelaRainhaCopas():
         self.grupo_rainha.add(self.rainha)
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
+        self.canal_dano = pygame.mixer.Channel(3)
+        self.canal_acertou = pygame.mixer.Channel(4)
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
 
     def desenha(self, window):
@@ -41,6 +45,10 @@ class TelaRainhaCopas():
             alice.grupo_bolinhos.draw(window)
 
         self.grupo_rainha.draw(window)
+
+        window.blit(QUADRO_VIDAS, (LARGURA_TELA//2 - QUADRO_VIDAS.get_width()//2 - 600, ALTURA_TELA - QUADRO_VIDAS.get_height() + 10))
+        window.blit(self.texto_vidas, (LARGURA_TELA//2 - 47 - 600, ALTURA_TELA - 45))
+        window.blit(self.texto_vidas_perdidas, (LARGURA_TELA//2 - 47 + self.alice.vidas * 20 - 600, ALTURA_TELA - 45))
 
         pygame.display.flip()
     
@@ -79,19 +87,27 @@ class TelaRainhaCopas():
             if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                 self.alice.vidas -= 1
                 self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                if not self.canal_dano.get_busy():
+                    self.canal_dano.play(SOM_ALICE_DANO, loops=0)
         if pygame.sprite.spritecollide(self.alice, self.rainha.grupo_coracoes, True, pygame.sprite.collide_mask):
             if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                 self.alice.vidas -= 1
                 self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                if not self.canal_dano.get_busy():
+                    self.canal_dano.play(SOM_ALICE_DANO, loops=0)
         if pygame.sprite.spritecollide(self.rainha, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
-            self.rainha.vidas -= 2
+            self.rainha.vidas -= 1
+            if not self.canal_acertou.get_busy():
+                self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rainha.grupo_cartinhas, True, True, pygame.sprite.collide_mask):
-            pass
+            if not self.canal_acertou.get_busy():
+                self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rainha.grupo_coracoes, True, True, pygame.sprite.collide_mask):
-            pass
+            if not self.canal_acertou.get_busy():
+                self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
                 
         if self.rainha.vidas <= 0:
-            self.tela_atual = "TelaCartas"
+            self.tela_atual = "TelaVitoria"
             self.nivel = 1
             self.dano = 30
 
@@ -109,6 +125,9 @@ class TelaRainhaCopas():
                                 cartinha.rotacionar()
                     rainha.grupo_cartinhas.update()
                     rainha.grupo_coracoes.update()
+
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
         return True
     

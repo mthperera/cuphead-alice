@@ -35,6 +35,10 @@ class TelaRainhaVermelha():
         self.grupo_rei.add(self.rei_vermelho)
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
+        self.canal_dano = pygame.mixer.Channel(3)
+        self.canal_acertou = pygame.mixer.Channel(4)
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
 
     def desenha(self, window):
@@ -54,8 +58,11 @@ class TelaRainhaVermelha():
             rei.grupo_pecas.draw(window)
         self.grupo_alice.draw(window)
         self.alice.grupo_bolinhos.draw(window)
-        
 
+        window.blit(QUADRO_VIDAS, (LARGURA_TELA//2 - QUADRO_VIDAS.get_width()//2 - 600, ALTURA_TELA - QUADRO_VIDAS.get_height() + 10))
+        window.blit(self.texto_vidas, (LARGURA_TELA//2 - 47 - 600, ALTURA_TELA - 45))
+        window.blit(self.texto_vidas_perdidas, (LARGURA_TELA//2 - 47 + self.alice.vidas * 20 - 600, ALTURA_TELA - 45))
+        
         pygame.display.flip()
     
 
@@ -81,24 +88,38 @@ class TelaRainhaVermelha():
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                    if not self.canal_dano.get_busy():
+                        self.canal_dano.play(SOM_ALICE_DANO, loops=0)
             if pygame.sprite.spritecollide(self.rainha_vermelha, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.rainha_vermelha.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.spritecollide(self.plataforma_rainha, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.rainha_vermelha.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rainha_vermelha.grupo_livros, True, True, pygame.sprite.collide_mask):
-                pass
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
 
         if len(self.grupo_rei) > 0:
             if pygame.sprite.spritecollide(self.alice, self.rei_vermelho.grupo_pecas, True, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                    if not self.canal_dano.get_busy():
+                        self.canal_dano.play(SOM_ALICE_DANO, loops=0)
             if pygame.sprite.spritecollide(self.rei_vermelho, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.rei_vermelho.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.spritecollide(self.plataforma_rei, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.rei_vermelho.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.rei_vermelho.grupo_pecas, True, True, pygame.sprite.collide_mask):
-                pass
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         
         self.grupo_plataforma.update()
         self.grupo_plataforma_rainha.update()
@@ -126,10 +147,13 @@ class TelaRainhaVermelha():
             self.dano = 20 - self.rainha_vermelha.vidas + 20 - self.rei_vermelho.vidas
         
         if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
-            self.tela_atual = "TelaRanking"
+            self.tela_atual = "TelaVitoria"
             self.tempo_terminou = pygame.time.get_ticks()//1000
             self.nivel = 3
             self.dano = 40
+        
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
         return True
     

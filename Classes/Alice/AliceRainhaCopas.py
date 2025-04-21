@@ -31,6 +31,8 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         self.direcao = None
         self.angulo = 0
         self.t0_ultimo_dano = pygame.time.get_ticks()
+        self.canal_pulo = pygame.mixer.Channel(1)
+        self.canal_atacando = pygame.mixer.Channel(2)
 
 
     def ataque_bolinho(self):
@@ -201,13 +203,19 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
                     self.atacando_bolinho = True
                     self.angulo_bolinho = self.angulo
                     self.t0_atacou_bolinho = self.t0_bolinho = pygame.time.get_ticks()
+                    if not self.canal_atacando.get_busy():
+                        self.canal_atacando.play(SOM_ALICE_ATACANDO, loops=0)
                 if evento.button == 3 and pygame.time.get_ticks() - self.t0_atacou_superbolo > 4000:
                     self.atacando_superbolo = True
                     self.t0_atacou_superbolo = self.t0_superbolo = pygame.time.get_ticks()
+                    if not self.canal_atacando.get_busy():
+                        self.canal_atacando.play(SOM_ALICE_ATACANDO, loops=0)
                 if evento.button == 0:
                     if not self.pulando:
                         self.t0_pular_animacao = self.t0_pular_movimentacao = pygame.time.get_ticks()
                         self.rect.y -= 1
+                        if not self.canal_pulo.get_busy():
+                            self.canal_pulo.play(SOM_ALICE_PULO, loops=0)
                     self.pulando = True
             
             if evento.type == pygame.JOYAXISMOTION:

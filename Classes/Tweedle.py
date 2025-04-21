@@ -16,7 +16,7 @@ class TweedleDee(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
-        self.vidas = 30
+        self.vidas = 15
     
 
     def jogar_ovo(self):
@@ -34,8 +34,8 @@ class TweedleDee(pygame.sprite.Sprite):
         elif (self.t1 - self.t0_ovo) % 3000 <= 2400:
             self.image = LISTA_TEEDLE_OVO[3]
             if not self.lancou_ovo:
-                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, self.alice.rect.centerx - 100, self.alice.rect.centery - 100))
-                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, self.alice.rect.centerx + 100, self.alice.rect.centery + 100))
+                self.grupo_ovos.add(Ovo(155, 65, self.alice.rect.centerx - 100, self.alice.rect.centery - 100))
+                self.grupo_ovos.add(Ovo(155, 65, self.alice.rect.centerx + 100, self.alice.rect.centery + 100))
                 self.lancou_ovo = True
         elif (self.t1 - self.t0_ovo) % 3000 < 3000:
             self.image = LISTA_TEEDLE_OVO[2]
@@ -72,7 +72,7 @@ class TweedleDum(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
-        self.vidas = 30
+        self.vidas = 15
     
 
     def jogar_ovo(self):
@@ -90,8 +90,8 @@ class TweedleDum(pygame.sprite.Sprite):
         elif (self.t1 - self.t0_ovo) % 3000 <= 2400:
             self.image = pygame.transform.flip(LISTA_TEEDLE_OVO[3], True, False)
             if not self.lancou_ovo:
-                self.grupo_ovos.add(Ovo(155, 65, self.alice.rect.centerx - 100, self.alice.rect.centery - 100))
-                self.grupo_ovos.add(Ovo(155, 65, self.alice.rect.centerx + 100, self.alice.rect.centery + 100))
+                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, self.alice.rect.centerx - 100, self.alice.rect.centery - 100))
+                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, self.alice.rect.centerx + 100, self.alice.rect.centery + 100))
                 self.lancou_ovo = True
         elif (self.t1 - self.t0_ovo) % 3000 < 3000:
             self.image = pygame.transform.flip(LISTA_TEEDLE_OVO[2], True, False)

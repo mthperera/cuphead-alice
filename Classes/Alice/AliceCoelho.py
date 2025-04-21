@@ -19,6 +19,7 @@ class AliceCoelho(pygame.sprite.Sprite):
         self.aceleracao_y = 1000
         self.andando = self.pulando = False
         self.direcao = None
+        self.canal_pulo = pygame.mixer.Channel(1)
     
 
     def andar(self, direcao):
@@ -113,6 +114,7 @@ class AliceCoelho(pygame.sprite.Sprite):
                     if not self.pulando:
                         self.t0_pular_animacao = self.t0_pular_movimentacao = pygame.time.get_ticks()
                         self.rect.y -= 1
+                        self.canal_pulo.play(SOM_ALICE_PULO, loops=0)
                     self.pulando = True
             
             if evento.type == pygame.JOYAXISMOTION:

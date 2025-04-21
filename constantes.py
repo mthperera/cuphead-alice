@@ -5,8 +5,14 @@ import os
 BRANCO = (255, 255, 255)
 AZUL = (0, 0, 255)
 VERDE = (0, 255, 0)
+VERMELHO = (255, 0, 0)
 MARROM = (92, 64, 51)
 CINZA = (83, 113, 110)
+
+
+# Caracteres que serão usados:
+CORACAO = chr(9829)
+
 
 # Largura e altura da tela que serão usadas para criar a window:
 pygame.init()
@@ -20,18 +26,24 @@ FONTE_TECLA = pygame.font.Font(os.path.join("Assets/Fontes", "DejaVuSans.ttf"), 
 FONTE_RANKING_22 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 22)
 FONTE_RANKING_26 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 26)
 FONTE_RANKING_28 = pygame.font.Font(os.path.join("Assets/Fontes", "ChailceNoggin.ttf"), 28)
+FONTE_CORACAO = pygame.font.Font(os.path.join("Assets/Fontes", "PressStart2P.ttf"), 20)
 
 
 # Carregando as músicas de fundo e os efeitos sonoros:
 pygame.mixer.init()
 
-MUSICA_FUNDO_ALICE = pygame.mixer.Sound(os.path.join("Assets/Sons", "Alice’s Theme.mp3"))
-MUSICA_FUNDO_COELHO = pygame.mixer.Sound(os.path.join("Assets/Sons", "Corações e Desafios - Coelho.mp3"))
-MUSICA_FUNDO_CARTAS = pygame.mixer.Sound(os.path.join("Assets/Sons", "Reflections of Defeat - Cartas.mp3"))
-MUSICA_FUNDO_RAINHA_COPAS = pygame.mixer.Sound(os.path.join("Assets/Sons", "A Rainha da Estratégia - RainhaCopas.mp3"))
-MUSICA_FUNDO_TWEEDLE = pygame.mixer.Sound(os.path.join("Assets/Sons", "Whimsical Wonderland - Tweedle.mp3"))
-MUSICA_FUNDO_RAINHA_VERMELHA = pygame.mixer.Sound(os.path.join("Assets/Sons", "Confronto da Rainha - RainhaVermelha.mp3"))
-MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude to Conflict - GameOver.mp3"))
+MUSICA_FUNDO_ALICE = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Alice’s Theme.mp3"))
+MUSICA_FUNDO_COELHO = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Corações e Desafios - Coelho.mp3"))
+MUSICA_FUNDO_CARTAS = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Reflections of Defeat - Cartas.mp3"))
+MUSICA_FUNDO_RAINHA_COPAS = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "A Rainha da Estratégia - RainhaCopas.mp3"))
+MUSICA_FUNDO_TWEEDLE = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Whimsical Wonderland - Tweedle.mp3"))
+MUSICA_FUNDO_RAINHA_VERMELHA = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Confronto da Rainha - RainhaVermelha.mp3"))
+MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Prelude to Conflict - GameOver.mp3"))
+
+SOM_ALICE_ACERTOU = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Acertou.mp3"))
+SOM_ALICE_ATACANDO = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Atacando.mp3"))
+SOM_ALICE_DANO = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Dano.mp3"))
+SOM_ALICE_PULO = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Pulo.mp3"))
 
 
 
@@ -53,6 +65,10 @@ for i in range(1, 12):
     LISTA_ALICE_SUPER_BOLO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo",f"{i}.png")), (170, 255)))
 for i in range(1, 14):
     LISTA_ALICE_AVIAO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Avião",f"{i}.png")), (128, 128)))
+
+
+# Quadro de vidas:
+QUADRO_VIDAS = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho","Quadro Vidas.png")), (150, 100))
 
 
 # Bolinho:
@@ -194,13 +210,17 @@ LISTA_PECAS = [
 
 # Tela GameOver:
 FUNDO_GAME_OVER = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_02.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_03.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_01.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_02.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_03.png")), (LARGURA_TELA, ALTURA_TELA)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Fundo_Game_Over_04.png")), (LARGURA_TELA, ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","RainhaCopas.png")), (LARGURA_TELA, ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","Tweedle.png")), (LARGURA_TELA, ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela GameOver","RainhaVermelha.png")), (LARGURA_TELA, ALTURA_TELA)),
+]
+
+
+# Tela Vitoria:
+FUNDO_VITORIA = [
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Vitoria","RainhaCopas.png")), (LARGURA_TELA, ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Vitoria","Tweedle.png")), (LARGURA_TELA, ALTURA_TELA)),
+    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Vitoria","RainhaVermelha.png")), (LARGURA_TELA, ALTURA_TELA)),
 ]
 
 

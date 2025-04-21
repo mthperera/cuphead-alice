@@ -10,6 +10,7 @@ from Telas.TelaTweedle import TelaTweedle
 from Telas.TelaRainhaVermelha import TelaRainhaVermelha
 from Telas.TelaCartas import TelaCartas
 from Telas.TelaGameOver import TelaGameOver
+from Telas.TelaVitoria import TelaVitoria
 from Telas.TelaRanking import TelaRanking
 
 
@@ -20,8 +21,8 @@ class Jogo():
     # Além disso, esse método ainda permite que a troca de tela, por exemplo,
     # voltando para uma anterior seja feito por meio do: ' while self.tela_atual != "Sair" '.
     def __init__(self):
-        self.tela_atual = "TelaRainhaVermelha"
-        self.nivel_atual = 2
+        self.tela_atual = "TelaNome"
+        self.nivel_atual = 0
         self.dano = 0
         self.tempo_terminou = 0
         self.window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
@@ -122,11 +123,21 @@ class Jogo():
                         break
             
             if self.tela_atual == "TelaGameOver":
-                tela = TelaGameOver()
+                tela = TelaGameOver(nivel=self.nivel_atual)
                 tela.tela_atual = "TelaGameOver"
                 while tela.atualiza_estado():
                     tela.desenha(self.window)
                     if tela.tela_atual != "TelaGameOver":
+                        pygame.event.clear()
+                        self.tela_atual = tela.tela_atual
+                        break
+            
+            if self.tela_atual == "TelaVitoria":
+                tela = TelaVitoria(nivel=self.nivel_atual)
+                tela.tela_atual = "TelaVitoria"
+                while tela.atualiza_estado():
+                    tela.desenha(self.window)
+                    if tela.tela_atual != "TelaVitoria":
                         pygame.event.clear()
                         self.tela_atual = tela.tela_atual
                         break

@@ -1,38 +1,44 @@
 [
     {
-        "Nome": "JAOOO",
-        "Nível": 2,
-        "Tempo": 120,
-        "Dano": 1000
-    },
-    {
-        "Nome": "Chapeleiro77",
-        "Nível": 2,
-        "Tempo": 110,
-        "Dano": 95
-    },
-    {
-        "Nome": "RainhaDoidinha",
-        "Nível": 2,
-        "Tempo": 300,
-        "Dano": 80
-    },
-    {
-        "Nome": "GatoLouco",
-        "Nível": 2,
-        "Tempo": 250,
-        "Dano": 85
-    },
-    {
-        "Nome": "Tweedle",
-        "Nível": 1,
-        "Tempo": 500,
-        "Dano": 70
-    },
-    {
-        "Nome": Perera,
+        "Nome": "Chapeleiro",
         "Nível": 3,
-        "Dano": 40,
-        "Tempo": 89
+        "Dano": 120,
+        "Tempo": 145
+    },
+    {
+        "Nome": "Rainha Vermelha",
+        "Nível": 2,
+        "Dano": 95,
+        "Tempo": 160
+    },
+    {
+        "Nome": "Gato Risonho",
+        "Nível": 2,
+        "Dano": 110,
+        "Tempo": 140
+    },
+    {
+        "Nome": "Tweedledee",
+        "Nível": 1,
+        "Dano": 85,
+        "Tempo": 200
+    },
+    {
+        "Nome": "Tweedledum",
+        "Nível": 1,
+        "Dano": 90,
+        "Tempo": 195
+    },
+    {
+        "Nome": "Coelho Branco",
+        "Nível": 3,
+        "Dano": 130,
+        "Tempo": 180
+    },
+    {
+        "Nome": "Oscar",
+        "Nível": 1,
+        "Dano": 22,
+        "Tempo": 0
     }
 ]

@@ -1,14 +1,13 @@
 import pygame
 from constantes import *
-from random import choice
 
-class TelaGameOver():
+class TelaVitoria():
 
     def __init__(self, nivel):
-        self.tela_atual = "TelaGameOver"
+        self.tela_atual = "TelaVitoria"
         self.t0 = pygame.time.get_ticks()
         self.nivel = nivel
-        self.fundo = FUNDO_GAME_OVER[self.nivel]
+        self.fundo = FUNDO_VITORIA[self.nivel - 1]
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
 
@@ -38,7 +37,7 @@ class TelaGameOver():
             
             if evento.type == pygame.JOYBUTTONDOWN:
                 if evento.button == 0:
-                    self.tela_atual = "TelaRanking"
+                    self.tela_atual = "TelaCartas"
 
 
         return True

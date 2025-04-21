@@ -34,6 +34,10 @@ class TelaTweedle:
         self.delta_t = 1500
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
+        self.canal_dano = pygame.mixer.Channel(3)
+        self.canal_acertou = pygame.mixer.Channel(4)
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
 
     def desenha(self, window):
@@ -55,6 +59,10 @@ class TelaTweedle:
         
         self.grupo_alice.draw(window)
         self.alice.grupo_bolinhos.draw(window)
+
+        window.blit(QUADRO_VIDAS, (LARGURA_TELA//2 - QUADRO_VIDAS.get_width()//2 - 600, ALTURA_TELA - QUADRO_VIDAS.get_height() + 10))
+        window.blit(self.texto_vidas, (LARGURA_TELA//2 - 47 - 600, ALTURA_TELA - 45))
+        window.blit(self.texto_vidas_perdidas, (LARGURA_TELA//2 - 47 + self.alice.vidas * 20 - 600, ALTURA_TELA - 45))
 
         pygame.display.flip()
 
@@ -82,29 +90,45 @@ class TelaTweedle:
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                    if not self.canal_dano.get_busy():
+                        self.canal_dano.play(SOM_ALICE_DANO, loops=0)
             if pygame.sprite.spritecollide(self.tweedle_dee, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dee.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.spritecollide(self.plataforma_ovo_dee, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dee.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.tweedle_dee.grupo_ovos, True, True, pygame.sprite.collide_mask):
-                pass
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         
         if self.tweedle_dum in self.grupo_tweedle:
             if pygame.sprite.spritecollide(self.alice, self.tweedle_dum.grupo_ovos, True, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                    if not self.canal_dano.get_busy():
+                        self.canal_dano.play(SOM_ALICE_DANO, loops=0)
             if pygame.sprite.spritecollide(self.tweedle_dum, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dum.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.spritecollide(self.plataforma_ovo_dum, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dum.vidas -= 1
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
             if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.tweedle_dum.grupo_ovos, True, True, pygame.sprite.collide_mask):
-                pass
+                if not self.canal_acertou.get_busy():
+                    self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         
         if pygame.sprite.spritecollide(self.alice, self.grupo_ioios, False, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1500:
                     self.alice.vidas -= 1
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                    if not self.canal_dano.get_busy():
+                        self.canal_dano.play(SOM_ALICE_DANO, loops=0)
 
 
         self.grupo_tweedle.update()
@@ -122,10 +146,12 @@ class TelaTweedle:
             self.dano = 30 - self.tweedle_dee.vidas + 30 - self.tweedle_dum.vidas
         
         if len(self.grupo_tweedle)== 0:
-            self.tela_atual = "TelaCartas"
+            self.tela_atual = "TelaVitoria"
             self.nivel = 2
             self.dano = 60
-
+        
+        self.texto_vidas = FONTE_CORACAO.render(CORACAO * self.alice.vidas, True, VERMELHO)
+        self.texto_vidas_perdidas = FONTE_CORACAO.render(CORACAO * (5 - self.alice.vidas), True, BRANCO)
 
         return True
 

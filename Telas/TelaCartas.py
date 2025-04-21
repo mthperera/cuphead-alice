@@ -52,7 +52,7 @@ class TelaCartas():
                     elif self.nivel == 2:
                         self.tela_atual = "TelaRainhaVermelha"
                     elif self.nivel == 3:
-                        self.tela_atual = "TelaVitoria"
+                        self.tela_atual = "TelaRanking"
                     self.canal_0.stop()
 
 

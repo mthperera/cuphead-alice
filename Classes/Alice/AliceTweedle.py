@@ -25,6 +25,7 @@ class AliceTweedle(pygame.sprite.Sprite):
         self.angulo = 0
         self.direcao = self.ultima_direcao = None
         self.t0_ultimo_dano = pygame.time.get_ticks()
+        self.canal_atacando = pygame.mixer.Channel(2)
 
 
     def ataque_bolinho(self):
@@ -146,9 +147,13 @@ class AliceTweedle(pygame.sprite.Sprite):
                     self.atacando_bolinho = True
                     self.angulo_bolinho = self.angulo
                     self.t0_atacou_bolinho = self.t0_bolinho = pygame.time.get_ticks()
+                    if not self.canal_atacando.get_busy():
+                        self.canal_atacando.play(SOM_ALICE_ATACANDO, loops=0)
                 if evento.button == 3 and pygame.time.get_ticks() - self.t0_atacou_superbolo > 4000:
                     self.atacando_superbolo = True
                     self.t0_atacou_superbolo = self.t0_superbolo = pygame.time.get_ticks()
+                    if not self.canal_atacando.get_busy():
+                        self.canal_atacando.play(SOM_ALICE_ATACANDO, loops=0)
             
             if evento.type == pygame.JOYAXISMOTION:
                 if evento.axis == 5:
