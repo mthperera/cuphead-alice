@@ -10,6 +10,7 @@ class PlataformaOvoDee(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0 = pygame.time.get_ticks()
         self.image = IMAGEM_CASCA_OVO
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -23,6 +24,8 @@ class PlataformaOvoDee(pygame.sprite.Sprite):
 
         self.movimentar()
 
+        self.mask = pygame.mask.from_surface(self.image)
+
 
 class PlataformaOvoDum(pygame.sprite.Sprite):
 
@@ -32,6 +35,7 @@ class PlataformaOvoDum(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0 = pygame.time.get_ticks()
         self.image = pygame.transform.flip(IMAGEM_CASCA_OVO, True, False)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -44,4 +48,6 @@ class PlataformaOvoDum(pygame.sprite.Sprite):
     def update(self):
         
         self.movimentar()
+
+        self.mask = pygame.mask.from_surface(self.image)
 

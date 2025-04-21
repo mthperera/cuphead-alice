@@ -1,4 +1,4 @@
-from Classes.Alice import *
+from Classes.Alice.AliceRainhaCopas import AliceRainhaCopas
 from Classes.RainhaCopas import RainhaCopas
 from constantes import *
 
@@ -16,8 +16,10 @@ class TelaRainhaCopas():
 
     def __init__(self):
         self.tela_atual = "TelaRainhaCopas"
+        self.nivel = 0
+        self.dano = 0
         self.grupo_alice = pygame.sprite.Group()
-        self.alice = AliceComum(400, ALTURA_TELA - 50)
+        self.alice = AliceRainhaCopas(400, ALTURA_TELA - 50)
         self.grupo_alice.add(self.alice)
         self.grupo_rainha = pygame.sprite.Group()
         self.rainha = RainhaCopas(self.alice)
@@ -74,6 +76,7 @@ class TelaRainhaCopas():
                 self.alice.velocidade_x = -100 if (self.rainha.rect.x - self.alice.rect.x) >= 0 else 100
                 self.alice.t0_pular_movimentacao = pygame.time.get_ticks()
                 self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+                # Arrumar bug
 
         if pygame.sprite.spritecollide(self.alice, self.rainha.grupo_cartinhas, True, pygame.sprite.collide_mask):
             if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:

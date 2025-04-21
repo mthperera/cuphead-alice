@@ -1,7 +1,7 @@
 import pygame
-from random import randint
+from random import choice
 from constantes import *
-from Classes.Plataforma import Plataforma
+from Classes.Alice.AliceTweedle import AliceTweedle
 from Classes.Tweedle import *
 from Classes.PlataformaOvo import *
 from Classes.Ioio import *
@@ -9,12 +9,17 @@ from Classes.Ioio import *
 class TelaTweedle:
     def __init__(self):
         self.tela_atual = "TelaTweedle"
-        self.grupo_plataformas = pygame.sprite.Group()
+        self.nivel = 1
+        self.dano = 0
+        self.grupo_alice = pygame.sprite.Group()
+        self.alice = AliceTweedle(LARGURA_TELA//2, ALTURA_TELA//2)
+        self.alice.tela_atual = "TelaRainhaVermelha"
+        self.grupo_alice.add(self.alice)
         self.grupo_tweedle = pygame.sprite.Group()
         self.grupo_plataformas_ovo = pygame.sprite.Group()
         self.grupo_ioios = pygame.sprite.Group()
-        self.tweedle_dee = TweedleDee(60, 20)
-        self.tweedle_dum = TweedleDum(LARGURA_TELA - LISTA_TEEDLE_OVO[0].get_width() - 60, 20)
+        self.tweedle_dee = TweedleDee(60, 20, self.alice)
+        self.tweedle_dum = TweedleDum(LARGURA_TELA - LISTA_TEEDLE_OVO[0].get_width() - 60, 20, self.alice)
         self.plataforma_ovo_dee = PlataformaOvoDee(30, 110)
         self.plataforma_ovo_dum = PlataformaOvoDum(LARGURA_TELA - IMAGEM_CASCA_OVO.get_width() - 30, 110)
         self.ioio_dee = IoioDee(200, 450)
@@ -36,7 +41,6 @@ class TelaTweedle:
 
         window.blit(IMAGEM_FUNDO_TWEEDLE, (0, 0))
 
-        self.grupo_plataformas.draw(window)
         self.grupo_plataformas_ovo.draw(window)
         self.grupo_tweedle.draw(window)
 
@@ -48,6 +52,9 @@ class TelaTweedle:
         self.grupo_ioios.draw(window)
         for tweedle in self.grupo_tweedle:
             tweedle.grupo_ovos.draw(window)
+        
+        self.grupo_alice.draw(window)
+        self.alice.grupo_bolinhos.draw(window)
 
         pygame.display.flip()
 
@@ -58,7 +65,9 @@ class TelaTweedle:
             self.canal_0.play(MUSICA_FUNDO_TWEEDLE, loops=-1)
             self.musica_tocando = True
 
-        for evento in pygame.event.get():
+
+        lista_eventos = pygame.event.get()
+        for evento in lista_eventos:
             if evento.type == pygame.QUIT:
                 self.canal_0.stop()
                 self.tela_atual = "Sair"
@@ -67,36 +76,59 @@ class TelaTweedle:
                     self.canal_0.stop()
                     self.tela_atual = "Sair"
         
+        
+        if self.tweedle_dee in self.grupo_tweedle:
+            if pygame.sprite.spritecollide(self.alice, self.tweedle_dee.grupo_ovos, True, pygame.sprite.collide_mask):
+                if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
+                    self.alice.vidas -= 1
+                    print("ovo_dee")
+                    self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+            if pygame.sprite.spritecollide(self.tweedle_dee, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.tweedle_dee.vidas -= 1
+            if pygame.sprite.spritecollide(self.plataforma_ovo_dee, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.tweedle_dee.vidas -= 1
+            if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.tweedle_dee.grupo_ovos, True, True, pygame.sprite.collide_mask):
+                pass
+        
+        if self.tweedle_dum in self.grupo_tweedle:
+            if pygame.sprite.spritecollide(self.alice, self.tweedle_dum.grupo_ovos, True, pygame.sprite.collide_mask):
+                if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
+                    self.alice.vidas -= 1
+                    print("ovo_dum")
+                    self.alice.t0_ultimo_dano = pygame.time.get_ticks()
+            if pygame.sprite.spritecollide(self.tweedle_dum, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.tweedle_dum.vidas -= 1
+            if pygame.sprite.spritecollide(self.plataforma_ovo_dum, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
+                self.tweedle_dum.vidas -= 1
+            if pygame.sprite.groupcollide(self.alice.grupo_bolinhos, self.tweedle_dum.grupo_ovos, True, True, pygame.sprite.collide_mask):
+                pass
+        
+        if pygame.sprite.spritecollide(self.alice, self.grupo_ioios, False, pygame.sprite.collide_mask):
+                if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1500:
+                    self.alice.vidas -= 1
+                    print("ioio")
+                    self.alice.t0_ultimo_dano = pygame.time.get_ticks()
 
-        self.grupo_plataformas.update()
+
         self.grupo_tweedle.update()
         self.grupo_plataformas_ovo.update()
         self.grupo_ioios.update()
         for tweedle in self.grupo_tweedle:
             tweedle.grupo_ovos.update()
-
-        # Gerando plataformas de terra em quantidades 2 ou 3:
-        if (pygame.time.get_ticks() - self.t0) // self.delta_t > 0:
-            numero = randint(1, 3)
-            if numero in [1, 3]:
-                x_1 = randint(350, LARGURA_TELA//3 - 96)
-                x_2 = randint(LARGURA_TELA//3, 2* LARGURA_TELA//3 - 96)
-                x_3 = randint(2*LARGURA_TELA//3, LARGURA_TELA - 446)
-                y = -120
-
-                self.grupo_plataformas.add(Plataforma(x_1, y))
-                self.grupo_plataformas.add(Plataforma(x_2, y))
-                self.grupo_plataformas.add(Plataforma(x_3, y))
-            else:
-                x_1 = randint(350, LARGURA_TELA//2 - 96)
-                x_2 = randint(LARGURA_TELA//2, LARGURA_TELA - 350)
-                y = -120
-
-                self.grupo_plataformas.add(Plataforma(x_1, y))
-                self.grupo_plataformas.add(Plataforma(x_2, y))
-            
-            self.delta_t += 1500
         
+        self.alice.update(lista_eventos)
+        self.alice.grupo_bolinhos.update()
+
+        if self.alice.vidas <= 0:
+            self.tela_atual = "TelaGameOver"
+            self.nivel = 1
+            self.dano = 30 - self.tweedle_dee.vidas + 30 - self.tweedle_dum.vidas
+        
+        if len(self.grupo_tweedle)== 0:
+            self.tela_atual = "TelaCartas"
+            self.nivel = 2
+            self.dano = 60
+
 
         return True
 

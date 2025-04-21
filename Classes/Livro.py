@@ -5,12 +5,12 @@ from math import sqrt
 
 class Livro(pygame.sprite.Sprite):
 
-    def __init__(self, x, y, x_alvo, y_alvo):
+    def __init__(self, x, y, alice):
         pygame.sprite.Sprite.__init__(self)
         self.pos_x = x
         self.pos_y = y
-        self.dx = x_alvo - self.pos_x
-        self.dy = y_alvo - self.pos_y
+        self.dx = alice.rect.centerx - self.pos_x
+        self.dy = alice.rect.centery - self.pos_y
         self.velocidade_x = self.dx/sqrt(self.dx**2 + self.dy**2) * 350
         self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 350
         self.t0 = pygame.time.get_ticks()

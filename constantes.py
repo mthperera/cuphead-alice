@@ -39,21 +39,20 @@ MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons", "Prelude 
 
 # Alice:
 LISTA_ALICE_BOLINHO = list()
+LISTA_ALICE_CORRENDO = list()
+LISTA_ALICE_PULANDO = list()
+LISTA_ALICE_SUPER_BOLO = list()
+LISTA_ALICE_AVIAO = list()
 for i in range(1, 12):
     LISTA_ALICE_BOLINHO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Bolinho",f"{i}.png")), (170, 255)))
-
-LISTA_ALICE_CORRENDO = list()
 for i in range(1, 20):
     LISTA_ALICE_CORRENDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Correndo",f"{i}.png")), (170, 255)))
-
-LISTA_ALICE_PULANDO = list()
 for i in range(1, 9):
     LISTA_ALICE_PULANDO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Pulando",f"{i}.png")), (170, 255)))
-
-LISTA_ALICE_SUPER_BOLO = list()
 for i in range(1, 12):
     LISTA_ALICE_SUPER_BOLO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice SuperBolo",f"{i}.png")), (170, 255)))
-
+for i in range(1, 14):
+    LISTA_ALICE_AVIAO.append(pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Alice e Bolinho/Alice Avião",f"{i}.png")), (128, 128)))
 
 
 # Bolinho:
@@ -139,6 +138,7 @@ LISTA_EXPLOSAO_CORACAO = [
 # Tela Tweedle Deen e Dum:
 IMAGEM_FUNDO_TWEEDLE = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Fundo_Céu_01.png")), (LARGURA_TELA, ALTURA_TELA + 40))
 PLATAFORMA_PEDRA = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Plataforma_Pedra.png")), (96, 96))
+PLATAFORMA_PEDRA_ESTAVEL = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Plataforma_Pedra_Estavel.png")), (192, 192))
 IMAGEM_CASCA_OVO = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Casca_Ovo_03.png")), (196, 196))
 LISTA_TEEDLE_OVO = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Tweedle_Olho_Aberto.png")), (128, 128)),

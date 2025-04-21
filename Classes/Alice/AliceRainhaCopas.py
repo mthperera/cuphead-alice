@@ -1,10 +1,10 @@
 import pygame
 from constantes import *
 from Classes.Bolinho import Bolinho
-from math import atan2, degrees, cos
+from math import atan2, degrees
 
 
-class Alice(pygame.sprite.Sprite):
+class AliceRainhaCopas(pygame.sprite.Sprite):
     
     def __init__(self, x, y):
         pygame.sprite.Sprite.__init__(self)
@@ -12,7 +12,6 @@ class Alice(pygame.sprite.Sprite):
         self.pos_y_inicial = self.pos_y
         self.tela_atual = "TelaCoelho"
         self.vidas = 5
-        self.forca = 1
         self.image = LISTA_ALICE_SUPER_BOLO[0]
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(midbottom = (self.pos_x, self.pos_y))
@@ -108,20 +107,12 @@ class Alice(pygame.sprite.Sprite):
 
         antigo_centro = self.rect.center
         if direcao == "Direita":
-            self.image = pygame.transform.rotate(self.image, -10)
             self.image = pygame.transform.flip(self.image, True, False)
         
         elif direcao == "Esquerda":
-            self.image = pygame.transform.rotate(self.image, -10)
+            pass
         self.rect = self.image.get_rect(center = antigo_centro)
 
-
-class AliceComum(Alice):
-
-    def __init__(self, x, y):
-        Alice.__init__(self, x, y)
-        pass
-    
 
     def pular_movimentacao(self, direcao):
 
@@ -185,7 +176,7 @@ class AliceComum(Alice):
 
 
             if evento.type == pygame.JOYBUTTONDOWN:
-                if evento.button == 2 and pygame.time.get_ticks() - self.t0_atacou_bolinho > 800:
+                if evento.button == 2 and pygame.time.get_ticks() - self.t0_atacou_bolinho > 1000:
                     self.atacando_bolinho = True
                     self.angulo_bolinho = self.angulo
                     self.t0_atacou_bolinho = self.t0_bolinho = pygame.time.get_ticks()
@@ -218,8 +209,12 @@ class AliceComum(Alice):
         
         if self.andando:
             self.pulando = False
-            if self.rect.x > 0 and self.rect.x < LARGURA_TELA - 100:
+            if self.rect.x >= 0 and self.rect.x <= LARGURA_TELA - 100:
                 self.andar(self.direcao)
+            elif self.rect.x < 0:
+                self.rect.x = 5
+            elif self.rect.x > LARGURA_TELA - 100:
+                self.rect.x = LARGURA_TELA - 105   
         
         if not (self.andando or self.pulando or self.atacando_bolinho or self.atacando_superbolo):
             self.image = LISTA_ALICE_SUPER_BOLO[0]
@@ -231,98 +226,3 @@ class AliceComum(Alice):
             self.vidas = 0     
         
         self.mask = pygame.mask.from_surface(self.image)
-
-
-class AliceTweedle(Alice):
-
-    def __init__(self, x, y):
-        Alice.__init__(self, x, y)
-        pass
-
-
-class AliceRainhaVermelha(Alice):
-
-    def __init__(self, x, y):
-        Alice.__init__(self, x, y)
-        pass
-    
-
-    def movimentar_plataforma(self):
-
-        # Realizando MHS vertical:
-        self.pos_y = self.pos_y_inicial + 10 * cos((pygame.time.get_ticks() - self.t0)/1000)
-        self.rect.y = self.pos_y
-    
-    
-    def cair(self):
-
-        now = pygame.time.get_ticks()
-        dt = (now - self.t0_caindo)/1000
-
-        self.rect.y += 200 * dt
-
-        self.t0_caindo = now
-    
-    def update(self, lista_eventos):
-
-        for evento in lista_eventos:
-
-            if evento.type == pygame.JOYAXISMOTION:
-                if evento.axis == 0:
-                    if not self.andando:
-                        self.t0_andar_movimentacao = self.t0_andar_animacao = pygame.time.get_ticks()
-                    self.andando = True
-                    if evento.value > 0.5:
-                        self.direcao = "Direita"
-                    elif evento.value < -0.5:
-                        self.direcao = "Esquerda"
-                    else:
-                        self.direcao = None
-                        self.andando = False
-                    self.value_0 = evento.value
-                elif evento.axis == 1:
-                    self.value_1 = evento.value
-
-                try:
-                    self.angulo = (degrees(atan2(-self.value_1, self.value_0)) + 360) % 360
-                except AttributeError:
-                    self.angulo = 90 if not hasattr(self, 'value_0') else 0
-
-
-            if evento.type == pygame.JOYBUTTONDOWN:
-                if evento.button == 2 and pygame.time.get_ticks() - self.t0_atacou_bolinho > 800:
-                    self.atacando_bolinho = True
-                    self.angulo_bolinho = self.angulo
-                    self.t0_atacou_bolinho = self.t0_bolinho = pygame.time.get_ticks()
-                if evento.button == 3 and pygame.time.get_ticks() - self.t0_atacou_superbolo > 4000:
-                    self.atacando_superbolo = True
-                    self.t0_atacou_superbolo = self.t0_superbolo = pygame.time.get_ticks()
-
-
-            if evento.type == pygame.JOYAXISMOTION:
-                if evento.axis == 5:
-                    if evento.value > 0.7:
-                        self.velocidade_x = 200
-                    else:
-                        self.velocidade_x = 150
-
-
-        if self.atacando_bolinho:
-            self.andando = False
-            self.ataque_bolinho()
-            
-        if self.atacando_superbolo:
-            self.super_bolo()
-        
-        if self.andando:
-            if self.rect.x > 0 and self.rect.x < LARGURA_TELA - 100:
-                self.andar(self.direcao)
-        
-        if not (self.andando or self.atacando_bolinho or self.atacando_superbolo):
-            self.image = LISTA_ALICE_SUPER_BOLO[0]
-        
-        if self.rect.bottom > ALTURA_TELA + 100:
-            self.vidas = 0     
-        
-        self.mask = pygame.mask.from_surface(self.image)
-

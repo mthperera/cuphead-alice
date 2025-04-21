@@ -5,7 +5,7 @@ from Classes.Livro import Livro
 
 class RainhaVermelha(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, alice):
         pygame.sprite.Sprite.__init__(self)
         self.pos_x = x
         self.pos_y = y
@@ -16,6 +16,7 @@ class RainhaVermelha(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_livros = pygame.sprite.Group()
         self.vidas = 20
+        self.alice = alice
     
     
     def jogar_livro(self):
@@ -33,7 +34,7 @@ class RainhaVermelha(pygame.sprite.Sprite):
         elif (self.t1 - self.t0_livro) % 3200 < 3200:
             self.image = LISTA_RAINHA_VERMELHA[4]
             if not self.lancou_livro:
-                self.grupo_livros.add(Livro(LARGURA_TELA - 200, 105, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]))
+                self.grupo_livros.add(Livro(LARGURA_TELA - 200, 105, self.alice))
                 self.lancou_livro = True
         
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))

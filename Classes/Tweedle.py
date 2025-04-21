@@ -5,15 +5,18 @@ from Classes.Ovo import Ovo
 
 class TweedleDee(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, alice):
         pygame.sprite.Sprite.__init__(self)
         self.pos_x = x
         self.pos_y = y
+        self.alice = alice
         self.t0_ovo = self.t0 = pygame.time.get_ticks()
         self.lancou_ovo = False
         self.image = LISTA_TEEDLE_OVO[0]
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
+        self.vidas = 30
     
 
     def jogar_ovo(self):
@@ -31,7 +34,7 @@ class TweedleDee(pygame.sprite.Sprite):
         elif (self.t1 - self.t0_ovo) % 3000 <= 2400:
             self.image = LISTA_TEEDLE_OVO[3]
             if not self.lancou_ovo:
-                self.grupo_ovos.add(Ovo(155, 65, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]))
+                self.grupo_ovos.add(Ovo(155, 65, self.alice.rect.centerx, self.alice.rect.centery))
                 self.lancou_ovo = True
         elif (self.t1 - self.t0_ovo) % 3000 < 3000:
             self.image = LISTA_TEEDLE_OVO[2]
@@ -49,17 +52,26 @@ class TweedleDee(pygame.sprite.Sprite):
         self.jogar_ovo()
         self.movimentar()
 
+        if self.vidas <= 0:
+            self.kill()
+
+        self.mask = pygame.mask.from_surface(self.image)
+
+
 class TweedleDum(pygame.sprite.Sprite):
 
-    def __init__(self, x, y):
+    def __init__(self, x, y, alice):
         pygame.sprite.Sprite.__init__(self)
         self.pos_x = x
         self.pos_y = y
+        self.alice = alice
         self.t0_ovo = self.t0 = pygame.time.get_ticks()
         self.lancou_ovo = False
         self.image = pygame.transform.flip(LISTA_TEEDLE_OVO[0], True, False)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
         self.grupo_ovos = pygame.sprite.Group()
+        self.vidas = 30
     
 
     def jogar_ovo(self):
@@ -77,7 +89,7 @@ class TweedleDum(pygame.sprite.Sprite):
         elif (self.t1 - self.t0_ovo) % 3000 <= 2400:
             self.image = pygame.transform.flip(LISTA_TEEDLE_OVO[3], True, False)
             if not self.lancou_ovo:
-                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]))
+                self.grupo_ovos.add(Ovo(LARGURA_TELA-155, 65, self.alice.rect.centerx, self.alice.rect.centery))
                 self.lancou_ovo = True
         elif (self.t1 - self.t0_ovo) % 3000 < 3000:
             self.image = pygame.transform.flip(LISTA_TEEDLE_OVO[2], True, False)
@@ -94,3 +106,8 @@ class TweedleDum(pygame.sprite.Sprite):
         
         self.jogar_ovo()
         self.movimentar()
+
+        if self.vidas <= 0:
+            self.kill()
+        
+        self.mask = pygame.mask.from_surface(self.image)

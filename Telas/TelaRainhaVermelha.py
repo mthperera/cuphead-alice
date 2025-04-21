@@ -5,12 +5,15 @@ from Classes.PlataformaRainha import PlataformaRainha
 from Classes.PlataformaRei import PlataformaRei
 from Classes.RainhaVermelha import RainhaVermelha
 from Classes.ReiVermelho import ReiVermelho
-from Classes.Alice import *
+from Classes.Alice.AliceRainhaVermelha import AliceRainhaVermelha
 
 class TelaRainhaVermelha():
 
     def __init__(self):
         self.tela_atual = "TelaRainhaVermelha"
+        self.nivel = 2
+        self.dano = 0
+        self.tempo_terminou = 0
         self.t0 = pygame.time.get_ticks()
         self.grupo_alice = pygame.sprite.Group()
         self.alice = AliceRainhaVermelha(LARGURA_TELA//2, ALTURA_TELA//2 - 110)
@@ -25,7 +28,7 @@ class TelaRainhaVermelha():
         self.plataforma_rei = PlataformaRei()
         self.grupo_plataforma_rei.add(self.plataforma_rei)
         self.grupo_rainha = pygame.sprite.Group()
-        self.rainha_vermelha = RainhaVermelha(LARGURA_TELA - 210, 68)
+        self.rainha_vermelha = RainhaVermelha(LARGURA_TELA - 210, 68, self.alice)
         self.grupo_rainha.add(self.rainha_vermelha)
         self.grupo_rei = pygame.sprite.Group()
         self.rei_vermelho = ReiVermelho(50, 70)
@@ -125,6 +128,7 @@ class TelaRainhaVermelha():
         
         if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
             self.tela_atual = "TelaCartas"
+            self.tempo_terminou = pygame.time.get_ticks()//1000
             self.nivel = 3
             self.dano = 40
 

@@ -15,6 +15,7 @@ class Ovo(pygame.sprite.Sprite):
         self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 350
         self.t0 = pygame.time.get_ticks()
         self.image = choice(LISTA_OVOS)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -40,3 +41,5 @@ class Ovo(pygame.sprite.Sprite):
             self.kill()
         elif self.rect.x < 0 or self.rect.x > LARGURA_TELA:
             self.kill()
+        
+        self.mask = pygame.mask.from_surface(self.image)

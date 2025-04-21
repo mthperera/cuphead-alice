@@ -1,7 +1,7 @@
 import pygame
 from constantes import *
 from Classes.Coelho import Coelho
-from Classes.Alice import Alice
+from Classes.Alice.AliceCoelho import AliceCoelho
 from random import choice
 
 
@@ -9,13 +9,14 @@ class TelaCoelho:
 
     def __init__(self):
         self.tela_atual = "TelaCoelho"
+        self.nivel = 0
         self.coelho = Coelho()
-        self.t0 = self.t0_atacou_bolinho = self.t0_atacou_superbolo = pygame.time.get_ticks()
+        self.t0 = pygame.time.get_ticks()
         self.fundo = choice(LISTA_FUNDO_COELHO)
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
         self.grupo_alice = pygame.sprite.Group()
-        self.grupo_alice.add(Alice(400, ALTURA_TELA - 140))
+        self.grupo_alice.add(AliceCoelho(400, ALTURA_TELA - 140))
         
 
     def desenha(self, window):
@@ -25,9 +26,6 @@ class TelaCoelho:
 
         self.coelho.desenhar(window)
         self.grupo_alice.draw(window)
-
-        for alice in self.grupo_alice:
-            alice.grupo_bolinhos.draw(window)
 
         pygame.display.flip()
     
@@ -51,9 +49,6 @@ class TelaCoelho:
                 
         self.coelho.movimentar()
         self.grupo_alice.update(lista_eventos)
-
-        for alice in self.grupo_alice:
-            alice.grupo_bolinhos.update()
         
 
         # Ponto em que o pulo do coelho começa:

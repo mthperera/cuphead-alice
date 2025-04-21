@@ -19,24 +19,43 @@ def ranquear_jogadores(jogadores):
     return sorted(jogadores, key=criterio)
 
 
+def adiciona_jogador_no_ranking(jogador, arquivo="ranking.txt"):
+    try:
+        with open(arquivo, 'r', encoding='utf-8') as f:
+            ranking = json.load(f)
+    except:
+        ranking = []
+    ranking.append(jogador)
+
+    with open(arquivo, 'w', encoding='utf-8') as f:
+        json.dump(ranking, f, ensure_ascii=False, indent=4)
+
+
 class TelaRanking():
 
-    def __init__(self):
+    def __init__(self, nome, nivel, dano, tempo):
         self.tela_atual = "TelaRanking"
         self.t0 = pygame.time.get_ticks()
         self.fundo = FUNDO_TELA_RANKING
         self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
         self.jogador = {
-            "Nome" : "JAOOO",
-            "Posição" : 1
+            "Nome" : nome, 
+            "Nível": nivel,
+            "Dano": dano,
+            "Tempo": tempo,
         }
 
 
     def inicializa(self):
 
+        adiciona_jogador_no_ranking(self.jogador)
         lista_jogadores = ler_jogadores_de_arquivo("ranking.txt")
         self.lista_ranking = ranquear_jogadores(lista_jogadores)
+
+        for i in range(len(self.lista_ranking)):
+            if self.lista_ranking[i]["Nome"] == self.jogador["Nome"]:
+                self.jogador["Posição"] = i + 1
 
 
     def desenha(self, window):

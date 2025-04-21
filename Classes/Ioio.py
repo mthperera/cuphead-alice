@@ -10,6 +10,7 @@ class IoioDee(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0 = pygame.time.get_ticks()
         self.image = LISTA_IOIO[0]
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -33,8 +34,11 @@ class IoioDee(pygame.sprite.Sprite):
 
     
     def update(self):
+
         self.movimentar()
         self.piscar()
+
+        self.mask = pygame.mask.from_surface(self.image)
 
 
 class IoioDum(pygame.sprite.Sprite):
@@ -45,6 +49,7 @@ class IoioDum(pygame.sprite.Sprite):
         self.pos_y = y
         self.t0 = pygame.time.get_ticks()
         self.image = pygame.transform.flip(LISTA_IOIO[0], True, False)
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(topleft=(self.pos_x, self.pos_y))
     
     
@@ -68,5 +73,8 @@ class IoioDum(pygame.sprite.Sprite):
 
     
     def update(self):
+        
         self.movimentar()
         self.piscar()
+
+        self.mask = pygame.mask.from_surface(self.image)

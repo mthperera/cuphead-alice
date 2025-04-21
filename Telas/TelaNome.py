@@ -1,5 +1,12 @@
 import pygame
 from constantes import *
+import json
+
+def ler_jogadores_de_arquivo(caminho_arquivo):
+    with open(caminho_arquivo, "r", encoding="utf-8") as f:
+        jogadores = json.load(f)
+    return jogadores
+
 
 class TelaNome:
 
@@ -23,6 +30,8 @@ class TelaNome:
 
         self.tempo_ultimo_mov = 0
         self.delay_movimento = 200
+        self.lista_jogadores = ler_jogadores_de_arquivo("ranking.txt")
+        self.quantidade_mesmo_nome = 0
 
 
     def desenha(self, window):
@@ -122,7 +131,14 @@ class TelaNome:
                 self.nome += " "
         elif letra == "OK":
             if len(self.nome) > 0:
-                self.tela_atual = "TelaInicial"
+                self.quantidade_mesmo_nome = 0 
+                for jogador in self.lista_jogadores:
+                    if jogador["Nome"] == self.nome:
+                        self.quantidade_mesmo_nome = 1
+                        break
+                if self.quantidade_mesmo_nome == 0:
+                    self.tela_atual = "TelaInicial"
+
         else:
             if len(self.nome) < self.max_caracteres:
                 self.nome += letra

@@ -13,7 +13,6 @@ class Cartinha(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.pos_x = LARGURA_TELA - 200 + randint(-150, 50)
         self.pos_y = ALTURA_TELA + randint(-300, -150)
-        self.alvo_x, self.pos_y = (0, 0)
         self.velocidade_x = randint(-80, -10)
         self.velocidade_y = randint(-50, -10)
         self.aceleracao = 30
