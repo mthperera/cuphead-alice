@@ -11,8 +11,8 @@ class Ovo(pygame.sprite.Sprite):
         self.pos_y = y
         self.dx = x_alvo - self.pos_x
         self.dy = y_alvo - self.pos_y
-        self.velocidade_x = self.dx/sqrt(self.dx**2 + self.dy**2) * 350
-        self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 350
+        self.velocidade_x = self.dx/sqrt(self.dx**2 + self.dy**2) * 450
+        self.velocidade_y = self.dy/sqrt(self.dx**2 + self.dy**2) * 450
         self.t0 = pygame.time.get_ticks()
         self.image = choice(LISTA_OVOS)
         self.mask = pygame.mask.from_surface(self.image)

@@ -111,7 +111,6 @@ class TelaRainhaVermelha():
             rei.grupo_pecas.update()
         self.alice.update(lista_eventos)
         self.alice.grupo_bolinhos.update()
-        self.alice.image = pygame.transform.scale(self.alice.image, (128, 192))
 
         if self.alice.rect.centerx > 3.5*ALTURA_TELA//8 + LARGURA_TELA//2 or self.alice.rect.centerx < - 3.5*ALTURA_TELA//8 + 65 + LARGURA_TELA//2:
             if not self.alice.caindo:
@@ -127,7 +126,7 @@ class TelaRainhaVermelha():
             self.dano = 20 - self.rainha_vermelha.vidas + 20 - self.rei_vermelho.vidas
         
         if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
-            self.tela_atual = "TelaCartas"
+            self.tela_atual = "TelaRanking"
             self.tempo_terminou = pygame.time.get_ticks()//1000
             self.nivel = 3
             self.dano = 40

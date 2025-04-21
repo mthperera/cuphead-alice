@@ -69,14 +69,11 @@ class TelaRainhaCopas():
         
 
         if verifica_colisao(self.rainha, self.alice):
-            if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
+            if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000 and not self.alice.pulando:
                 self.alice.vidas -= 1
-                self.alice.rect.y -= 10
-                self.alice.rect.x -= 20
-                self.alice.velocidade_x = -100 if (self.rainha.rect.x - self.alice.rect.x) >= 0 else 100
-                self.alice.t0_pular_movimentacao = pygame.time.get_ticks()
+                self.alice.t0_pular_rainha = pygame.time.get_ticks()
                 self.alice.t0_ultimo_dano = pygame.time.get_ticks()
-                # Arrumar bug
+                self.alice.colidindo_rainha = True
 
         if pygame.sprite.spritecollide(self.alice, self.rainha.grupo_cartinhas, True, pygame.sprite.collide_mask):
             if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:

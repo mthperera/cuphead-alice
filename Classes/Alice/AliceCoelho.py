@@ -128,12 +128,12 @@ class AliceCoelho(pygame.sprite.Sprite):
         
         if self.andando:
             self.pulando = False
-            if self.rect.x >= 0 and self.rect.x <= LARGURA_TELA - 100:
+            if self.rect.left >= 0 and self.rect.right <= LARGURA_TELA:
                 self.andar(self.direcao)
-            elif self.rect.x < 0:
-                self.rect.x = 5
-            elif self.rect.x > LARGURA_TELA - 100:
-                self.rect.x = LARGURA_TELA - 105   
+            elif self.rect.left < 0:
+                self.rect.left = 0
+            elif self.rect.right > LARGURA_TELA:
+                self.rect.right = LARGURA_TELA 
         
         if not self.andando and not self.pulando:
             self.image = LISTA_ALICE_SUPER_BOLO[0]

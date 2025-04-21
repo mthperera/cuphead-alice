@@ -81,7 +81,6 @@ class TelaTweedle:
             if pygame.sprite.spritecollide(self.alice, self.tweedle_dee.grupo_ovos, True, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
-                    print("ovo_dee")
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
             if pygame.sprite.spritecollide(self.tweedle_dee, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dee.vidas -= 1
@@ -94,7 +93,6 @@ class TelaTweedle:
             if pygame.sprite.spritecollide(self.alice, self.tweedle_dum.grupo_ovos, True, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1000:
                     self.alice.vidas -= 1
-                    print("ovo_dum")
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
             if pygame.sprite.spritecollide(self.tweedle_dum, self.alice.grupo_bolinhos, True, pygame.sprite.collide_mask):
                 self.tweedle_dum.vidas -= 1
@@ -106,7 +104,6 @@ class TelaTweedle:
         if pygame.sprite.spritecollide(self.alice, self.grupo_ioios, False, pygame.sprite.collide_mask):
                 if (pygame.time.get_ticks() - self.alice.t0_ultimo_dano) > 1500:
                     self.alice.vidas -= 1
-                    print("ioio")
                     self.alice.t0_ultimo_dano = pygame.time.get_ticks()
 
 

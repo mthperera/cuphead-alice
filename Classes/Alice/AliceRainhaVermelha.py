@@ -180,17 +180,14 @@ class AliceRainhaVermelha(pygame.sprite.Sprite):
             self.super_bolo()
         
         if self.andando:
-            if self.rect.x >= 0 and self.rect.x <= LARGURA_TELA - 100:
+            if LARGURA_TELA//2 - 3.5*ALTURA_TELA//8 + 50 < self.rect.centerx < LARGURA_TELA//2 + 3.5*ALTURA_TELA//8 + 15:
                 self.andar(self.direcao)
-            elif self.rect.x < 0:
-                self.rect.x = 5
-            elif self.rect.x > LARGURA_TELA - 100:
-                self.rect.x = LARGURA_TELA - 105
         
         if not (self.andando or self.atacando_bolinho or self.atacando_superbolo):
             self.image = LISTA_ALICE_SUPER_BOLO[0]
         
-        if self.rect.bottom > ALTURA_TELA + 100:
-            self.vidas = 0     
-        
+        if self.rect.top > ALTURA_TELA:
+            self.vidas = 0
+
+        self.image = pygame.transform.scale(self.image, (128, 192))
         self.mask = pygame.mask.from_surface(self.image)

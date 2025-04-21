@@ -57,8 +57,8 @@ class IoioDum(pygame.sprite.Sprite):
 
         # Ioio fazendo uma Figura de Lissajous por meio de dois MHS ortogonais.
         # Isso foi feito para dar uma sensação de movimento mais aleatório.
-        self.rect.y = self.pos_y + 200*cos(pi + 1*(pygame.time.get_ticks()-self.t0)/1000)
-        self.rect.x = self.pos_x + 150*cos(pi + 1.5*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.y = self.pos_y + 200*cos(pi + 2*(pygame.time.get_ticks()-self.t0)/1000)
+        self.rect.x = self.pos_x + 150*cos(pi + 2.5*(pygame.time.get_ticks()-self.t0)/1000)
     
 
     def piscar(self):

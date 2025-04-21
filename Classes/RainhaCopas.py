@@ -1,6 +1,7 @@
 from constantes import *
 from math import cos
 import pygame
+from random import randint
 from Classes.Cartinha import Cartinha
 from Classes.Coracao import Coracao
 
@@ -74,7 +75,7 @@ class RainhaCopas(pygame.sprite.Sprite):
 
         # Spawnando cartinhas a cada self.delta_t_acel ms:
         if (pygame.time.get_ticks() - self.t0) // self.delta_t_acel > 0 and (pygame.time.get_ticks()- self.t0) < 100000:
-            for _ in range(5):
+            for _ in range(randint(4, 5)):
                 cartinha = Cartinha(self.alice)
                 self.grupo_cartinhas.add(cartinha)
 
@@ -83,7 +84,7 @@ class RainhaCopas(pygame.sprite.Sprite):
         # Spawnando coracoes a cada self.delta_t_coracao ms:
         if (pygame.time.get_ticks() - self.t0 - 30000) // self.delta_t_coracao > 0:
             self.ataque_coracao = "Atacando"
-            for _ in range(6):
+            for _ in range(randint(5, 7)):
                 coracao = Coracao()
                 self.grupo_coracoes.add(coracao)
                 self.t0_ataque = pygame.time.get_ticks()

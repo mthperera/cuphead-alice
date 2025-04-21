@@ -20,12 +20,14 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         self.t0_bolinho = self.t0_atacou_bolinho = pygame.time.get_ticks()
         self.t0_superbolo = self.t0_atacou_superbolo = pygame.time.get_ticks()
         self.t0_andar = self.t0_pular = self.t0_caindo = pygame.time.get_ticks()
+        self.t0_pular_rainha = pygame.time.get_ticks()
         self.velocidade_x = 100
         self.velocidade_y = self.velocidade_y_inicial = -500
         self.aceleracao_y = 1000
         self.atacou_bolinho = self.atacando_bolinho = False
         self.atacou_superbolo = self.atacando_superbolo = False
         self.andando = self.pulando = self.caindo = False
+        self.colidindo_rainha = False
         self.direcao = None
         self.angulo = 0
         self.t0_ultimo_dano = pygame.time.get_ticks()
@@ -128,15 +130,34 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
 
         if self.rect.x > 0 and self.rect.x < LARGURA_TELA - 100:
             if direcao == "Direita":
-                velocidade_x = self.velocidade_x
+                velocidade_x = abs(self.velocidade_x)
             elif direcao == "Esquerda":
                 velocidade_x = -abs(self.velocidade_x)
             if direcao is not None:
                 self.rect.x += velocidade_x * dt
 
-            self.t0_pular_movimentacao = now
-
+        self.t0_pular_movimentacao = now
     
+
+    def pular_rainha(self):
+
+        now = pygame.time.get_ticks()
+        dt = (now - self.t0_pular_rainha) / 1000
+
+        self.velocidade_y += 800 * dt
+        self.rect.y += self.velocidade_y * dt
+        if self.rect.bottom >= self.pos_y:
+            self.rect.bottom = self.pos_y
+            self.velocidade_y = self.velocidade_y_inicial
+            self.colidindo_rainha = False
+
+        if self.rect.x > 0 and self.rect.x < LARGURA_TELA - 100:
+            velocidade_x = - 300
+            self.rect.x += velocidade_x * dt
+
+        self.t0_pular_movimentacao = now
+
+
     def pular_animacao(self, direcao):
 
         delta_t = (pygame.time.get_ticks() - self.t0_bolinho) % (8*250)
@@ -209,12 +230,12 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         
         if self.andando:
             self.pulando = False
-            if self.rect.x >= 0 and self.rect.x <= LARGURA_TELA - 100:
+            if self.rect.left >= 0 and self.rect.right <= LARGURA_TELA:
                 self.andar(self.direcao)
-            elif self.rect.x < 0:
-                self.rect.x = 5
-            elif self.rect.x > LARGURA_TELA - 100:
-                self.rect.x = LARGURA_TELA - 105   
+            elif self.rect.left < 0:
+                self.rect.left = 0
+            elif self.self.rect.right > LARGURA_TELA:
+                self.self.rect.right = LARGURA_TELA  
         
         if not (self.andando or self.pulando or self.atacando_bolinho or self.atacando_superbolo):
             self.image = LISTA_ALICE_SUPER_BOLO[0]
@@ -222,7 +243,8 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         if self.rect.bottom < self.pos_y:
             self.pular_movimentacao(self.direcao)
         
-        if self.rect.bottom > ALTURA_TELA + 100:
-            self.vidas = 0     
+        if self.colidindo_rainha:
+            self.pular_rainha()
+        
         
         self.mask = pygame.mask.from_surface(self.image)

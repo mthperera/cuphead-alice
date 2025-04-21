@@ -166,16 +166,16 @@ class AliceTweedle(pygame.sprite.Sprite):
             self.super_bolo()
         
         if self.voando:
-            if self.rect.x >= 0 and self.rect.x <= LARGURA_TELA - 100 and self.rect.y <= ALTURA_TELA - 50 and self.rect.y >= 0:
+            if self.rect.left >= 0 and self.rect.right <= LARGURA_TELA and self.rect.bottom <= ALTURA_TELA and self.rect.top >= 0:
                 self.voar_movimentacao(self.angulo)
-            elif self.rect.x < 0:
-                self.rect.x = 0
-            elif self.rect.x > LARGURA_TELA - 100:
-                self.rect.x = LARGURA_TELA - 100
-            elif self.rect.y < 0:
-                self.rect.y = 0
-            elif self.rect.y > ALTURA_TELA - 100:
-                self.rect.y = ALTURA_TELA - 100
+            elif self.rect.left < 0:
+                self.rect.left = 0
+            elif self.rect.right > LARGURA_TELA:
+                self.rect.right = LARGURA_TELA
+            elif self.rect.top < 0:
+                self.rect.top = 0
+            elif self.rect.bottom > ALTURA_TELA:
+                self.rect.bottom = ALTURA_TELA
 
         
         self.mask = pygame.mask.from_surface(self.image)
