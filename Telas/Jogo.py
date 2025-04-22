@@ -1,6 +1,8 @@
+# 1. Módulos de terceiros (pip)
 import pygame
-from constantes import *
 
+# 2. Módulos locais
+from constantes import *
 from Telas.TelaNome import TelaNome
 from Telas.TelaInicial import TelaInicial
 from Telas.TelaInstrucoes import TelaInstrucoes
@@ -13,23 +15,49 @@ from Telas.TelaGameOver import TelaGameOver
 from Telas.TelaVitoria import TelaVitoria
 from Telas.TelaRanking import TelaRanking
 
+# Esse método de telas foi escolhido para facilitar a troca de informações entre telas.
+# Por exemplo, a passagem de nível que interfere na TelaCartas.
+# Além disso, esse método ainda permite que a troca de tela, por exemplo,
+# voltando para uma anterior seja feito por meio do: ' while self.tela_atual != "Sair" '.
 
-class Jogo():
+class Jogo:
+    """
+    Essa classe é usada no jogo.py para dar o início. Ela basicamente faz o fluxo de telas.
 
-    # Esse método de telas foi escolhido para facilitar a troca de informações entre telas.
-    # Por exemplo, a passagem de nível que interfere na TelaCartas.
-    # Além disso, esse método ainda permite que a troca de tela, por exemplo,
-    # voltando para uma anterior seja feito por meio do: ' while self.tela_atual != "Sair" '.
-    def __init__(self):
+    Attributes:
+        tela_atual (str): A tela atual (a qual pode ser atualizada).
+        nivel_atual (int): O nível do jogador.
+        dano (int): O dano que o jogador causou nos chefões.
+        tempo_iniciou (int): O tempo que o jogador começou.
+        tempo_terminou (int): O tempo que o jogador terminou.
+        window (Surface): Janela na qual tudo será desenhado.
+        tela_inicial (TelaInicial): Instância da TelaInicial.
+        nome (str): Nome do jogador.
+    """
+    
+    def __init__(self) -> None:
+        """ 
+        Inicializa uma instância da classe TelaCartas.
+
+        Returns:
+            None:
+        """
         self.tela_atual = "TelaNome"
         self.nivel_atual = 0
         self.dano = 0
+        self.tempo_iniciou = 0
         self.tempo_terminou = 0
         self.window = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
         self.tela_inicial = TelaInicial()
         self.nome = None
 
-    def inicializa(self):
+    def inicializa(self) -> None:
+        """
+        Inicializa o jogo. Esse método gerencia e faz os fluxos de tela.
+
+        Returns:
+            None:
+        """
 
         while self.tela_atual != "Sair":
 
@@ -66,6 +94,7 @@ class Jogo():
             if self.tela_atual == "TelaCoelho":
                 tela = TelaCoelho()
                 tela.tela_atual = "TelaCoelho"
+                self.tempo_iniciou = pygame.time.get_ticks()//1000
                 while tela.atualiza_estado():
                     tela.desenha(self.window)
                     if tela.tela_atual != "TelaCoelho":
@@ -143,7 +172,7 @@ class Jogo():
                         break
             
             if self.tela_atual == "TelaRanking":
-                tela = TelaRanking(self.nome, self.nivel_atual, self.dano, self.tempo_terminou)
+                tela = TelaRanking(self.nome, self.nivel_atual, self.dano, self.tempo_iniciou, self.tempo_terminou)
                 tela.tela_atual = "TelaRanking"
                 tela.inicializa()
                 while tela.atualiza_estado():

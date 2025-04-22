@@ -1,31 +1,66 @@
+# 1. Módulos de terceiros (pip)
 import pygame
+from pygame.surface import Surface
+
+# 2. Módulos locais
 from constantes import *
 
-class TelaInicial():
+class TelaInicial:
+    """ 
+    Representa a tela que mostra ao jogador a opção de instruções e início de jogo.
 
-    def __init__(self):
+    Attributes:
+        tela_atual (str): A tela atual (a qual pode ser atualizada).
+        proxima_tela (str): Representa a próxima tela.
+        t0 (int): Tempo em que a Tela é iniciada.
+        fundo (Surface): Imagem de fundo.
+        canal_0 (Channel): Canal utilizado para a música de fundo.
+    """
+
+    def __init__(self) -> None:
+        """ 
+        Inicializa uma instância da classe TelaInicial. 
+
+        Returns:
+            None:
+        """
         self.tela_atual = "TelaInicial"
         self.proxima_tela = "TelaCoelho"
         self.t0 = pygame.time.get_ticks()
         self.fundo = FUNDO_TELA_INICAL[0]
-        self.musica_tocando = False
         self.canal_0 = pygame.mixer.Channel(0)
 
+    def desenha(self, window : Surface) -> None:
+        """
+        Desenha o fundo.
 
-    def desenha(self, window):
-        window.fill(BRANCO)
+        Args:
+            window (Surface) : Janela na qual tudo será desenhado.
         
+        Returns:
+            None:
+        """
+
+        # Desenhando a tela de fundo:
+        window.fill(BRANCO)
         window.blit(self.fundo, (0, 0))
 
         pygame.display.flip()
     
+    def atualiza_estado(self) -> bool:
+        """
+        Atualiza as informações da tela, tais como música e eventos.
 
-    def atualiza_estado(self):
+        Returns:
+            bool: 
+                - True se continuar na tela.
+        """
 
-        if not self.musica_tocando:
+        # Toca a música de fundo caso já não esteja tocando:
+        if not self.canal_0.get_busy():
             self.canal_0.play(MUSICA_FUNDO_ALICE, loops=-1)
-            self.musica_tocando = True
         
+        # Verifica eventos de troca de tela ou saída do jogo:
         for evento in pygame.event.get():
             if evento.type == pygame.QUIT:
                 self.canal_0.stop()

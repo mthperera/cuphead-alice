@@ -1,4 +1,7 @@
+# 1. Módulos de terceiros (pip)
 import pygame
+
+# 2. Módulos locais
 from Telas.Jogo import Jogo
 
 if __name__ == "__main__":

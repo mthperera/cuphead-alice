@@ -32,10 +32,13 @@ python jogo.py
 
 ## Informações adicionais:
 
-1) O projeto foi feito para ser jogado com controle de videogame.
+1) O projeto foi feito para ser jogado com controle de videogame (joystick).
 
 2) Para entender melhor como jogar, há, após a tela inicial, uma tela de instrução, a qual pode ser acessada abaixando o analógico esquerdo e apertando o button 0.
 Esse botão pode ser o "A" para controles de Xbox ou o "X" para PlayStation.
+
+3) A resolução da tela deve ser 1366 x 768.
+    - Isso pode ser alterado de forma provisória nas configurações do computador.
 
 
 ## Link para vídeo demonstração
@@ -57,5 +60,3 @@ Esse botão pode ser o "A" para controles de Xbox ou o "X" para PlayStation.
     🎼 Cortesia de Walt Disney Records
 
 3) As outras músicas de fundo utilizadas foram geradas pelo software Udio.
-
-4) Os outros sons são:

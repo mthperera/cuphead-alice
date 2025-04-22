@@ -75,7 +75,7 @@ class RainhaCopas(pygame.sprite.Sprite):
 
         # Spawnando cartinhas a cada self.delta_t_acel ms:
         if (pygame.time.get_ticks() - self.t0) // self.delta_t_acel > 0 and (pygame.time.get_ticks()- self.t0) < 100000:
-            for _ in range(randint(4, 5)):
+            for _ in range(randint(5, 6)):
                 cartinha = Cartinha(self.alice)
                 self.grupo_cartinhas.add(cartinha)
 
