@@ -1,62 +1,97 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/0Y5_N7_q)
+[![📅 Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/0Y5_N7_q)
 
-
-# Projeto Pygame - O Último chá de Alice?
+# 🎮 Projeto Pygame — *O Último Chá de Alice?*
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
 ![Pygame](https://img.shields.io/badge/Pygame-2.5.2-green?logo=pygame)
 
-Projeto feito por Matheus Henrique Pereira Borba e por Oscar Rodrigues de Sousa Filho, alunos do 1º semestre de Ciência da Computação do Insper.
-Por meio da biblioteca pygame, fizemos um jogo sobre o universo de Alice de Lewis Carroll baseado em Cuphead.
+👩‍💻 Projeto desenvolvido por **Matheus Henrique Pereira Borba** e **Oscar Rodrigues de Sousa Filho**, alunos do 1º semestre de Ciência da Computação do **Insper**.
 
+🎨 Utilizando a biblioteca **Pygame**, criamos um jogo inspirado no universo de *Alice no País das Maravilhas* com estética retrô no estilo **Cuphead**.
 
-## Descrição do jogo
+---
 
-O jogo é uma adaptação baseada na história da Alice, personagens de clássicos livros, como Alice no País das Maravilhas e Alice Através do Espelho, escritos por Lewis Carroll. Além disso, a estética e a dinâmica é inspirada no jogo Cuphead.
+## 📖 Descrição do Jogo
 
-Nesse jogo, a Rainha Branca é capturada pela Rainha Vermelha. Diante disso, Alice entra na missão de salvá-la.
-Para isso, ela deve enfrentar a Rainha de Copas, os Tweedle Dee e Tweedle Dum e a Rainha Vermelha.
-Cada uma dessas batalhas é uma fase: Alice deve matar o chefão da fase e se proteger de seus ataques, os quais podem ser pequenos monstrinhos ou objetos.
+🃏 Uma reinterpretação da história da **Alice**, com elementos dos livros *Alice no País das Maravilhas* e *Alice Através do Espelho*, ambos de Lewis Carroll, com forte inspiração visual e dinâmica do jogo **Cuphead**.
 
+🕳️ A trama começa quando o **Coelho Branco** pede ajuda a Alice: a **Rainha Branca** foi sequestrada pela **Rainha Vermelha** após proibir o uso de cigarros mágicos no reino. A **Lagarta**, então, concede poderes místicos com sua fumaça para aqueles que se unirem ao movimento **#liberaonarguile**.
 
-## Como executar
+☕ Alice só tem **uma chance** para resgatar a Rainha Branca e tomar o último chá com ela...
 
-1) Certifique-se de ter o **Python 3** instalado. -> Versão do Projeto: Python 3.12.10
+### 🗺️ Fases
 
-2) Instale as dependências digitando no terminal:
+1️⃣ **Rainha de Copas**: Invoca cartas assassinas e uma chuva de corações que dão dano. Alice precisa vencê-la para seguir adiante.
+
+2️⃣ **Tweedledum & Tweedledee**: Em uma fase aérea, Alice pilota a **Rainha Xícara**, enfrentando naves e ataques de ovos e ioiôs.
+
+3️⃣ **Rainha Vermelha**: Em um tabuleiro de xadrez flutuante, Alice enfrenta invocações de peças de xadrez e livros voadores para libertar a Rainha Branca.
+
+---
+
+## 🎮 Controles do Jogo
+
+<img src="Assets/Imagens/Tela Instrucoes/Tela Instrucoes.png" alt="Controles do Jogo" width="600"/>
+
+- 🕹️ **Analógico Esquerdo**  
+  ↪️ Move a Alice em qualquer direção  
+  🎯 Define a direção dos **bolinhos lançados**
+
+- ❌ **Botão X**  
+  🍪 Lança **3 bolinhos normais** na direção do analógico
+
+- 🟡 **Botão Y**  
+  💥 Lança o **super bolinho**, atirando em **todas as direções**
+
+- 🅰️ **Botão A**  
+  🐰 Faz a Alice **pular**
+
+- 🎯 **Gatilho Direito (RT)**  
+  🏃‍♀️ Faz a Alice **correr** (aumenta a velocidade)
+
+---
+
+## 🚀 Como Executar
+
+1️⃣ Certifique-se de ter o **Python 3.12.10** instalado
+
+2️⃣ Instale as dependências:
+```bash
 pip install -r requirements.txt
+```
 
-3) Execute digitando no terminal:
+3️⃣ Execute o jogo:
+```bash
 python jogo.py
+```
 
+---
 
-## Informações adicionais:
+## 📌 Informações Adicionais
 
-1) O projeto foi feito para ser jogado com controle de videogame (joystick).
+- 🎮 O jogo foi feito para ser jogado com **controle de videogame (joystick)**  
+- ℹ️ A **tela de instruções** aparece após a inicial:  
+  Use o **analógico para baixo** + **botão 0** (🅰️ no Xbox ou ❌ no PS)  
+- 🖥️ A resolução ideal do jogo é **1366 x 768**  
+  (Pode ser ajustada temporariamente nas configurações do PC)
 
-2) Para entender melhor como jogar, há, após a tela inicial, uma tela de instrução, a qual pode ser acessada abaixando o analógico esquerdo e apertando o button 0.
-Esse botão pode ser o "A" para controles de Xbox ou o "X" para PlayStation.
+---
 
-3) A resolução da tela deve ser 1366 x 768.
-    - Isso pode ser alterado de forma provisória nas configurações do computador.
+## 🎬 Vídeo Demonstração
 
+[📺 Clique aqui para assistir à demonstração do jogo](https://youtu.be/eZ5N__nAxXo)
 
-## Link para vídeo demonstração
+---
 
-[🎬 Clique aqui para assistir à demonstração do jogo](https://www.youtube.com/SEU_VIDEO)
+## 🎨 Créditos
 
+- 🖼️ **Todas as imagens** foram geradas com o **ChatGPT-4o (OpenAI)**
 
-## Créditos
+- 🎵 **Trilha Sonora da Tela Inicial**:  
+  “*Alice’s Theme*”  
+  Composta por **Danny Elfman**  
+  Interpretada por orquestra sinfônica e coral  
+  🎬 Do filme *Alice in Wonderland* (2010), dirigido por **Tim Burton**  
+  🎼 Cortesia de Walt Disney Records
 
-1) Todas as imagens foram geradas pelo modelo ChatGPT 4o da OpenAI.
-
-2) A música da Tela Inicial é:
-🎵 Trilha Sonora
-    “Alice’s Theme”
-    Composta por Danny Elfman
-    Interpretada por Orquestra Sinfônica e Coral (trilha original do filme)
-    Parte da trilha sonora do filme Alice in Wonderland (2010)
-    🎬 Dirigido por Tim Burton
-    🎼 Cortesia de Walt Disney Records
-
-3) As outras músicas de fundo utilizadas foram geradas pelo software Udio.
+- 🎶 As demais músicas de fundo foram geradas com o software **Udio**

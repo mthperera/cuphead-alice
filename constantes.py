@@ -39,6 +39,7 @@ MUSICA_FUNDO_RAINHA_COPAS = pygame.mixer.Sound(os.path.join("Assets/Sons/Música
 MUSICA_FUNDO_TWEEDLE = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Whimsical Wonderland - Tweedle.mp3"))
 MUSICA_FUNDO_RAINHA_VERMELHA = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Confronto da Rainha - RainhaVermelha.mp3"))
 MUSICA_FUNDO_GAMEOVER = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "Prelude to Conflict - GameOver.mp3"))
+MUSICA_FUNDO_VITORIA = pygame.mixer.Sound(os.path.join("Assets/Sons/Música Fundo", "achievements-and-motivation-303273.mp3"))
 
 SOM_ALICE_ACERTOU = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Acertou.mp3"))
 SOM_ALICE_ATACANDO = pygame.mixer.Sound(os.path.join("Assets/Sons/Sons Alice", "Atacando.mp3"))
@@ -84,6 +85,10 @@ FUNDO_TELA_INICAL = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Inicial","Tela_Inicial_01.png")), (LARGURA_TELA, ALTURA_TELA)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Inicial","Tela_Inicial_02.png")), (LARGURA_TELA, ALTURA_TELA)),
 ]
+
+
+# Tela Instrucoes:
+FUNDO_TELA_INSTRUCOES = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Instrucoes","Tela Instrucoes.png")), (LARGURA_TELA, ALTURA_TELA))
 
 
 # Tela Coelho:

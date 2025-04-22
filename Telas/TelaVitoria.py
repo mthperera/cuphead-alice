@@ -61,7 +61,7 @@ class TelaVitoria:
 
         # Toca a música de fundo caso já não esteja tocando:
         if not self.canal_0.get_busy():
-            self.canal_0.play(MUSICA_FUNDO_GAMEOVER, loops=-1)
+            self.canal_0.play(MUSICA_FUNDO_VITORIA, loops=-1)
 
         # Verifica eventos de troca de tela ou saída do jogo:
         for evento in pygame.event.get():

@@ -26,7 +26,7 @@ class TelaInstrucoes:
 
         self.tela_atual = "TelaInstrucoes"
         self.t0 = pygame.time.get_ticks()
-        self.fundo = FUNDO_TELA_INICAL[0]
+        self.fundo = FUNDO_TELA_INSTRUCOES
         self.canal_0 = pygame.mixer.Channel(0)
 
     def desenha(self, window : Surface) -> None:

@@ -35,7 +35,7 @@ class AliceRainhaVermelha(pygame.sprite.Sprite):
 
         delta_t = pygame.time.get_ticks() - self.t0_bolinho
         indice = delta_t // 20
-        if indice >= 6 and not self.atacou_bolinho:
+        if indice >= 4 and not self.atacou_bolinho:
             if not self.atacou_bolinho:
                 self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, self.angulo_bolinho))
                 self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, self.angulo_bolinho + 15))
