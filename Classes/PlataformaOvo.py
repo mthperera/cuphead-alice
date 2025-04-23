@@ -46,7 +46,7 @@ class PlataformaOvoDee(pygame.sprite.Sprite):
         self.t0 = pygame.time.get_ticks()
         self.t0_morte = self.t0_morte_movimentacao = pygame.time.get_ticks()
         self.velocidade_angular = 15
-        self.velocidade_y = 40
+        self.velocidade_y = 100
         self.angulo = 0
         self.vivo = True
         self.image = IMAGEM_CASCA_OVO
