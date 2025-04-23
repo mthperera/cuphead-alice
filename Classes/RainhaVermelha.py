@@ -60,7 +60,7 @@ class RainhaVermelha(pygame.sprite.Sprite):
 
         if indice == 2:
             self.lancou_livro = False
-        if indice == 4:
+        if indice == 3:
             if not self.lancou_livro:
                 self.grupo_livros.add(Livro(LARGURA_TELA - 200, 105, self.alice))
                 self.lancou_livro = True

@@ -99,8 +99,8 @@ class Coelho:
             self.image = pygame.transform.rotate(self.image, self.angulo)
         
         # Fazendo ele parar de se movimentar após sair da tela:
-        if self.rect.top > LARGURA_TELA:
-            self.rect.top = LARGURA_TELA
+        if self.pos_y > LARGURA_TELA:
+            self.pos_y = LARGURA_TELA
             self.velocidade_y = 0
             self.aceleracao_y = 0
 

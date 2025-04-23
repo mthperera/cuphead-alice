@@ -167,12 +167,14 @@ class TelaRainhaCopas:
         
         # Muda de tela quando a RainhaCopas morre:
         if self.rainha.vidas <= 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaVitoria"
             self.nivel = 1
             self.dano = 30
 
         # Termina o jogo quando a Alice morre:
         if self.alice.vidas <= 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaGameOver"
             self.nivel = 0
             self.dano = 30 - self.rainha.vidas

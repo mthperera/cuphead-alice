@@ -27,7 +27,8 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         t0_superbolo (int): Tempo em que a animação de atacar superbolo começou.
         t0_atacou_superbolo (int): Tempo em que o superbolo de fato foi atacado.
         t0_andar (int): Tempo em que a animação de andar iniciou.
-        t0_pular (int): Tempo em que a animação de pular começou.
+        t0_pular_animacao (int): Tempo em que a animação de pular começou.
+        t0_pular_movimentacao (int): Tempo em que a movimentacao de pular começou.
         t0_pular_rainha (int): Tempo em que a animação do pulo após o contato com a rainha iniciou.
         velocidade_x (int): Velocidade horizontal da Alice.
         velocidade_y (int): Velocidade inicial vertical da Alice (mutável).
@@ -64,7 +65,8 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         self.t0 = pygame.time.get_ticks()
         self.t0_bolinho = self.t0_atacou_bolinho = pygame.time.get_ticks()
         self.t0_superbolo = self.t0_atacou_superbolo = pygame.time.get_ticks()
-        self.t0_andar = self.t0_pular = pygame.time.get_ticks()
+        self.t0_andar = pygame.time.get_ticks()
+        self.t0_pular_animacao = self.t0_pular_movimentacao = pygame.time.get_ticks()
         self.t0_pular_rainha = pygame.time.get_ticks()
         self.velocidade_x = 100
         self.velocidade_y = self.velocidade_y_inicial = -500
@@ -251,7 +253,7 @@ class AliceRainhaCopas(pygame.sprite.Sprite):
         """
 
         # Movimenta a Alice com um pulo:
-        delta_t = (pygame.time.get_ticks() - self.t0_bolinho) % (8*250)
+        delta_t = (pygame.time.get_ticks() - self.t0_pular_animacao) % (8*250)
         indice = delta_t // 250
         self.image = LISTA_ALICE_PULANDO[indice]
         

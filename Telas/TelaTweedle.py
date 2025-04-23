@@ -207,12 +207,14 @@ class TelaTweedle:
 
         # Muda de tela quando os Tweedle morrem:
         if len(self.grupo_tweedle)== 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaVitoria"
             self.nivel = 2
             self.dano = 60
 
         # Termina o jogo quando a Alice morre:
         if self.alice.vidas <= 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaGameOver"
             self.nivel = 1
             self.dano = 30 - self.tweedle_dee.vidas + 30 - self.tweedle_dum.vidas

@@ -23,59 +23,6 @@ def ler_jogadores_de_arquivo(caminho_arquivo : str) -> list[dict]:
         jogadores = json.load(f)
     return jogadores
 
-
-def mover_cursor(self, dx : int, dy : int) -> None:
-    """
-    Move o cursor dentro do teclado virtual.
-
-    Args:
-        dx (int): Deslocamento horizontal do cursor.
-        dy (int): Deslocamento vertical do cursor.
-    
-    Returns:
-        None:
-    """
-
-    self.cursor_y = max(0, min(self.cursor_y + dy, len(self.teclado) - 1))
-    linha = self.teclado[self.cursor_y]
-    self.cursor_x = max(0, min(self.cursor_x + dx, len(linha) - 1))
-
-
-def processar_selecao(self) -> None:
-    """
-    Processa a tecla selecionada atualmente no teclado virtual.
-
-    Ação depende da tecla:
-        - "⌫": remove o último caractere.
-        - "SPACE": adiciona espaço.
-        - "OK": confirma o nome e muda de tela (se for válido).
-        - Letra qualquer: adiciona ao nome.
-    
-    Returns:
-        None:
-    """
-    letra = self.teclado[self.cursor_y][self.cursor_x]
-
-    if letra == "⌫":
-        self.nome = self.nome[:-1]
-    elif letra == "SPACE":
-        if len(self.nome) < self.max_caracteres:
-            self.nome += " "
-    elif letra == "OK":
-        if len(self.nome) > 0:
-            self.quantidade_mesmo_nome = 0 
-            for jogador in self.lista_jogadores:
-                if jogador["Nome"] == self.nome:
-                    self.quantidade_mesmo_nome = 1
-                    break
-            if self.quantidade_mesmo_nome == 0:
-                self.tela_atual = "TelaInicial"
-
-    else:
-        if len(self.nome) < self.max_caracteres:
-            self.nome += letra
-
-
 class TelaNome:
     """ 
     Representa a tela em que o jogador insere seu nome usando um teclado virtual.
@@ -226,4 +173,54 @@ class TelaNome:
 
         return True
 
+    def mover_cursor(self, dx : int, dy : int) -> None:
+        """
+        Move o cursor dentro do teclado virtual.
+
+        Args:
+            dx (int): Deslocamento horizontal do cursor.
+            dy (int): Deslocamento vertical do cursor.
+        
+        Returns:
+            None:
+        """
+
+        self.cursor_y = max(0, min(self.cursor_y + dy, len(self.teclado) - 1))
+        linha = self.teclado[self.cursor_y]
+        self.cursor_x = max(0, min(self.cursor_x + dx, len(linha) - 1))
+
+
+    def processar_selecao(self) -> None:
+        """
+        Processa a tecla selecionada atualmente no teclado virtual.
+
+        Ação depende da tecla:
+            - "⌫": remove o último caractere.
+            - "SPACE": adiciona espaço.
+            - "OK": confirma o nome e muda de tela (se for válido).
+            - Letra qualquer: adiciona ao nome.
+        
+        Returns:
+            None:
+        """
+        letra = self.teclado[self.cursor_y][self.cursor_x]
+
+        if letra == "⌫":
+            self.nome = self.nome[:-1]
+        elif letra == "SPACE":
+            if len(self.nome) < self.max_caracteres:
+                self.nome += " "
+        elif letra == "OK":
+            if len(self.nome) > 0:
+                self.quantidade_mesmo_nome = 0 
+                for jogador in self.lista_jogadores:
+                    if jogador["Nome"] == self.nome:
+                        self.quantidade_mesmo_nome = 1
+                        break
+                if self.quantidade_mesmo_nome == 0:
+                    self.tela_atual = "TelaInicial"
+
+        else:
+            if len(self.nome) < self.max_caracteres:
+                self.nome += letra
 

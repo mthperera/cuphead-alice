@@ -20,7 +20,8 @@ class AliceCoelho(pygame.sprite.Sprite):
         rect (Rect): Rect inicial da Alice.
         t0 (int): O tempo em que a Alice foi criada.
         t0_andar (int): Tempo em que a animação de andar iniciou.
-        t0_pular (int): Tempo em que a animação de pular começou.
+        t0_pular_animacao (int): Tempo em que a animação de pular começou.
+        t0_pular_movimentacao (int): Tempo em que a movimentacao de pular começou.
         velocidade_x (int): Velocidade horizontal da Alice.
         velocidade_y (int): Velocidade inicial vertical da Alice (mutável).
         velocidade_y_inicial (int): Velocidade verticial da Alice (imutável - usada para comparações).
@@ -44,7 +45,8 @@ class AliceCoelho(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(midbottom = (self.pos_x, self.pos_y))
         self.t0 = pygame.time.get_ticks()
-        self.t0_andar = self.t0_pular = pygame.time.get_ticks()
+        self.t0_andar = pygame.time.get_ticks()
+        self.t0_pular_animacao = self.t0_pular_movimentacao = pygame.time.get_ticks()
         self.velocidade_x = 100
         self.velocidade_y = self.velocidade_y_inicial = -500
         self.aceleracao_y = 1000
@@ -131,7 +133,7 @@ class AliceCoelho(pygame.sprite.Sprite):
         """
 
         # Movimenta a Alice com um pulo:
-        delta_t = (pygame.time.get_ticks() - self.t0_bolinho) % (8*250)
+        delta_t = (pygame.time.get_ticks() - self.t0_pular_animacao) % (8*250)
         indice = delta_t // 250
         self.image = LISTA_ALICE_PULANDO[indice]
         

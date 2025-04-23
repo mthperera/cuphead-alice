@@ -40,5 +40,29 @@
         "Nível": 1,
         "Dano": 22,
         "Tempo": 0
+    },
+    {
+        "Nome": "A",
+        "Nível": 0,
+        "Dano": 16,
+        "Tempo": -7
+    },
+    {
+        "Nome": null,
+        "Nível": 0,
+        "Dano": 1,
+        "Tempo": 0
+    },
+    {
+        "Nome": null,
+        "Nível": 1,
+        "Dano": 36,
+        "Tempo": 0
+    },
+    {
+        "Nome": null,
+        "Nível": 1,
+        "Dano": 36,
+        "Tempo": 0
     }
 ]

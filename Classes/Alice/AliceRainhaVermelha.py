@@ -93,7 +93,7 @@ class AliceRainhaVermelha(pygame.sprite.Sprite):
             self.atacando_bolinho = False
             self.atacou_bolinho = False
             self.angulo_bolinho = 0
-            if not self.pulando and not self.atacando_bolinho and not self.atacando_superbolo:
+            if not self.atacando_bolinho and not self.atacando_superbolo:
                 if hasattr(self, 'value_0') and abs(self.value_0) > 0.5:
                     self.direcao = "Direita" if self.value_0 > 0 else "Esquerda"
                     if not self.andando:

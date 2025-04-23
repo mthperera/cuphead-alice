@@ -96,8 +96,8 @@ class TelaRainhaVermelha:
         self.grupo_plataforma_rei.draw(window)
         self.grupo_rainha.draw(window)
         self.grupo_rei.draw(window)
-        self.rainha.grupo_livros.draw(window)
-        self.rei.grupo_pecas.draw(window)
+        self.rainha_vermelha.grupo_livros.draw(window)
+        self.rei_vermelho.grupo_pecas.draw(window)
         self.grupo_alice.draw(window)
         self.alice.grupo_bolinhos.draw(window)
 
@@ -138,8 +138,8 @@ class TelaRainhaVermelha:
         self.grupo_plataforma_rei.update()
         self.grupo_rainha.update()
         self.grupo_rei.update()
-        self.rainha.grupo_livros.update()
-        self.rei.grupo_pecas.update()
+        self.rainha_vermelha.grupo_livros.update()
+        self.rei_vermelho.grupo_pecas.update()
         self.alice.update(lista_eventos)
         self.alice.grupo_bolinhos.update()
         
@@ -200,6 +200,7 @@ class TelaRainhaVermelha:
         
         # Muda de tela quando a RainhaVermelha e o Rei morrem:
         if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaVitoria"
             self.tempo_terminou = pygame.time.get_ticks()//1000
             self.nivel = 3
@@ -207,6 +208,7 @@ class TelaRainhaVermelha:
         
         # Termina o jogo quando a Alice morre:
         if self.alice.vidas <= 0:
+            self.canal_0.stop()
             self.tela_atual = "TelaGameOver"
             self.nivel = 2
             self.dano = 20 - self.rainha_vermelha.vidas + 20 - self.rei_vermelho.vidas

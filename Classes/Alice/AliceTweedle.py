@@ -86,21 +86,21 @@ class AliceTweedle(pygame.sprite.Sprite):
                 self.grupo_bolinhos.add(Bolinho(self.rect.centerx, self.rect.centery, self.angulo_bolinho - 15))
                 self.atacou_bolinho = True
         elif indice > 10:
-            self.image = LISTA_ALICE_SUPER_BOLO[0]
+            self.image = LISTA_ALICE_AVIAO[0]
             self.atacando_bolinho = False
             self.atacou_bolinho = False
             self.angulo_bolinho = 0
-            if not self.pulando and not self.atacando_bolinho and not self.atacando_superbolo:
+            if not self.atacando_bolinho and not self.atacando_superbolo:
                 if hasattr(self, 'value_0') and abs(self.value_0) > 0.5:
                     self.direcao = "Direita" if self.value_0 > 0 else "Esquerda"
-                    if not self.andando:
+                    if not self.voando:
                         self.t0_andar_movimentacao = self.t0_andar_animacao = pygame.time.get_ticks()
-                    self.andando = True
+                    self.voando = True
                 else:
-                    self.andando = False
+                    self.voando = False
                     self.direcao = None
         else:
-            self.image = LISTA_ALICE_BOLINHO[indice]
+            self.image = LISTA_ALICE_AVIAO[indice]
         
         # Inverte a imagem (flip) caso o angulo de lançamento seja diferente da imagem origal:
         if 0 <= self.angulo_bolinho <= 90 or 270 <= self.angulo_bolinho <= 360:
@@ -134,7 +134,7 @@ class AliceTweedle(pygame.sprite.Sprite):
             self.atacou_superbolo = False
         
         else:
-            self.image = LISTA_ALICE_SUPER_BOLO[indice]
+            self.image = LISTA_ALICE_AVIAO[indice]
 
     def voar_movimentacao(self, angulo : float) -> None:
         """
