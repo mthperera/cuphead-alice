@@ -1,12 +1,12 @@
 [
     {
-        "Nome": "Gato Tímido",
+        "Nome": "Gato Timido",
         "Nível": 0,
         "Dano": 10,
         "Tempo": 18
     },
     {
-        "Nome": "Rainha Pálida",
+        "Nome": "Rainha Palida",
         "Nível": 0,
         "Dano": 12,
         "Tempo": 15
