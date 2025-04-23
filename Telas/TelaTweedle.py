@@ -96,8 +96,8 @@ class TelaTweedle:
 
         # Desenhando os Ioio e os ovos:
         self.grupo_ioios.draw(window)
-        self.tweedledee.grupo_ovos.draw(window)
-        self.tweedledum.grupo_ovos.draw(window)
+        self.tweedle_dee.grupo_ovos.draw(window)
+        self.tweedle_dum.grupo_ovos.draw(window)
         
         # Desenhando a Alice e os bolinhos:
         self.grupo_alice.draw(window)

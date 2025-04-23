@@ -129,8 +129,6 @@ LISTA_EXPLOSAO_CARTINHA  = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Explosao_Cartinha_06.png")), (32, 48)),
 ]
 LISTA_INVOCAR_CORACAO  = [
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_01.png")), (255, 384)),
-    pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_02.png")), (255, 384)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_03.png")), (255, 384)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_04.png")), (255, 384)),
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela RainhaCopas","Invocar_Coracao_05.png")), (255, 384)),
@@ -158,8 +156,6 @@ LISTA_EXPLOSAO_CORACAO = [
 
 # Tela Tweedle Deen e Dum:
 IMAGEM_FUNDO_TWEEDLE = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Fundo_Céu_01.png")), (LARGURA_TELA, ALTURA_TELA + 40))
-PLATAFORMA_PEDRA = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Plataforma_Pedra.png")), (96, 96))
-PLATAFORMA_PEDRA_ESTAVEL = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Plataforma_Pedra_Estavel.png")), (192, 192))
 IMAGEM_CASCA_OVO = pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Casca_Ovo_03.png")), (196, 196))
 LISTA_TEEDLE_OVO = [
     pygame.transform.scale(pygame.image.load(os.path.join("Assets/Imagens/Tela Tweedle","Tweedle_Olho_Aberto.png")), (128, 128)),

@@ -23,7 +23,7 @@
 
 1️⃣ **Rainha de Copas**: Invoca cartas assassinas e uma chuva de corações que dão dano. Alice precisa vencê-la para seguir adiante.
 
-2️⃣ **Tweedledum & Tweedledee**: Em uma fase aérea, Alice pilota a **Rainha Xícara**, enfrentando naves e ataques de ovos e ioiôs.
+2️⃣ **Tweedledum & Tweedledee**: Em uma fase aérea, Alice pilota a **Rainha Xícara**, enfrentando naves e ataques de ovos e de ioiôs.
 
 3️⃣ **Rainha Vermelha**: Em um tabuleiro de xadrez flutuante, Alice enfrenta invocações de peças de xadrez e livros voadores para libertar a Rainha Branca.
 

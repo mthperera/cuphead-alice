@@ -198,15 +198,6 @@ class TelaRainhaVermelha:
                 if not self.canal_acertou.get_busy():
                     self.canal_acertou.play(SOM_ALICE_ACERTOU, loops=0)
         
-        # Faz a Alice cair caso ela esteja fora da Plataforma de Xadrez:
-        if self.alice.rect.centerx > 3.5*ALTURA_TELA//8 + LARGURA_TELA//2 or self.alice.rect.centerx < - 3.5*ALTURA_TELA//8 + 65 + LARGURA_TELA//2:
-            if not self.alice.caindo:
-                self.alice.t0_caindo = pygame.time.get_ticks()
-                self.alice.caindo = True
-            self.alice.cair()
-        else:
-            self.alice.movimentar_plataforma()
-
         # Muda de tela quando a RainhaVermelha e o Rei morrem:
         if len(self.grupo_rainha) + len(self.grupo_rei) == 0:
             self.tela_atual = "TelaVitoria"
