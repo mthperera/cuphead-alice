@@ -1,68 +1,32 @@
 [
     {
-        "Nome": "Chapeleiro",
-        "Nível": 3,
-        "Dano": 120,
-        "Tempo": 145
-    },
-    {
-        "Nome": "Rainha Vermelha",
-        "Nível": 2,
-        "Dano": 95,
-        "Tempo": 160
-    },
-    {
-        "Nome": "Gato Risonho",
-        "Nível": 2,
-        "Dano": 110,
-        "Tempo": 140
-    },
-    {
-        "Nome": "Tweedledee",
-        "Nível": 1,
-        "Dano": 85,
-        "Tempo": 200
-    },
-    {
-        "Nome": "Tweedledum",
-        "Nível": 1,
-        "Dano": 90,
-        "Tempo": 195
-    },
-    {
-        "Nome": "Coelho Branco",
-        "Nível": 3,
-        "Dano": 130,
-        "Tempo": 180
-    },
-    {
-        "Nome": "Oscar",
-        "Nível": 1,
-        "Dano": 22,
-        "Tempo": 0
-    },
-    {
-        "Nome": "A",
+        "Nome": "Gato Tímido",
         "Nível": 0,
-        "Dano": 16,
-        "Tempo": -7
+        "Dano": 10,
+        "Tempo": 18
     },
     {
-        "Nome": null,
+        "Nome": "Rainha Pálida",
         "Nível": 0,
-        "Dano": 1,
-        "Tempo": 0
+        "Dano": 12,
+        "Tempo": 15
     },
     {
-        "Nome": null,
-        "Nível": 1,
-        "Dano": 36,
-        "Tempo": 0
+        "Nome": "Chapeleirinho",
+        "Nível": 0,
+        "Dano": 9,
+        "Tempo": 14
     },
     {
-        "Nome": null,
-        "Nível": 1,
-        "Dano": 36,
-        "Tempo": 0
+        "Nome": "Coelhinho Cinza",
+        "Nível": 0,
+        "Dano": 11,
+        "Tempo": 19
+    },
+    {
+        "Nome": "Tweedlemeia",
+        "Nível": 0,
+        "Dano": 8,
+        "Tempo": 16
     }
 ]

@@ -27,7 +27,7 @@ class TweedleDee(pygame.sprite.Sprite):
 
     def __init__(self, x : int, y : int, alice : AliceTweedle) -> None:
         """ 
-        Inicializa uma instância da classe TweedleDee. 
+        Inicializa uma instância da classe TweedleDee.
 
         Args:
             x (int): Posição x do topleft do TweedleDee.

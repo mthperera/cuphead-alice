@@ -83,6 +83,13 @@ python jogo.py
 
 ---
 
+## 🌐 Site do Jogo
+
+🔗 Acesse o jogo e informações adicionais diretamente pelo site:  
+[👉 Clique aqui para acessar o site do jogo](https://insper-classroom.github.io/projeto-pygame-site-time-bege-matheus-e-oscar/)
+
+---
+
 ## 🎨 Créditos
 
 - 🖼️ **Todas as imagens** foram geradas com o **ChatGPT-4o (OpenAI)**

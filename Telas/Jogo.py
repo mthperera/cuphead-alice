@@ -42,7 +42,7 @@ class Jogo:
         Returns:
             None:
         """
-        self.tela_atual = "TelaRainhaVermelha"
+        self.tela_atual = "TelaTweedle"
         self.nivel_atual = 0
         self.dano = 0
         self.tempo_iniciou = 0

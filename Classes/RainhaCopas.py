@@ -109,7 +109,7 @@ class RainhaCopas(pygame.sprite.Sprite):
         # Spawnando coracoes a cada self.delta_t_coracao ms:
         if (pygame.time.get_ticks() - self.t0 - 30000) // self.delta_t_coracao > 0:
             self.ataque_coracao = "Atacando"
-            for _ in range(randint(5, 7)):
+            for _ in range(randint(5, 6)):
                 coracao = Coracao()
                 self.grupo_coracoes.add(coracao)
                 self.t0_ataque = pygame.time.get_ticks()

@@ -53,8 +53,8 @@ class TelaTweedle:
         self.grupo_ioios = pygame.sprite.Group()
         self.tweedle_dee = TweedleDee(60, 20, self.alice)
         self.tweedle_dum = TweedleDum(LARGURA_TELA - LISTA_TEEDLE_OVO[0].get_width() - 60, 20, self.alice)
-        self.plataforma_ovo_dee = PlataformaOvoDee(30, 110)
-        self.plataforma_ovo_dum = PlataformaOvoDum(LARGURA_TELA - IMAGEM_CASCA_OVO.get_width() - 30, 110)
+        self.plataforma_ovo_dee = PlataformaOvoDee(30, 110, self.tweedle_dee)
+        self.plataforma_ovo_dum = PlataformaOvoDum(LARGURA_TELA - IMAGEM_CASCA_OVO.get_width() - 30, 110, self.tweedle_dum)
         self.ioio_dee = IoioDee(200, 450)
         self.ioio_dum = IoioDum(LARGURA_TELA - LISTA_IOIO[0].get_width() - 250, 450)
         self.grupo_tweedle.add(self.tweedle_dee)
@@ -90,8 +90,10 @@ class TelaTweedle:
         self.grupo_tweedle.draw(window)
 
         # Desenhando "cordas" dos ioio:
-        pygame.draw.line(window, MARROM, (self.ioio_dee.rect.x + 24, self.ioio_dee.rect.y + 5), (self.plataforma_ovo_dee.rect.x + 100, self.plataforma_ovo_dee.rect.y + 145), 3)
-        pygame.draw.line(window, MARROM, (self.ioio_dum.rect.x + 24, self.ioio_dum.rect.y + 5), (self.plataforma_ovo_dum.rect.x + 100, self.plataforma_ovo_dum.rect.y + 145), 3)
+        if self.tweedle_dee.vidas > 0:
+            pygame.draw.line(window, MARROM, (self.ioio_dee.rect.x + 24, self.ioio_dee.rect.y + 5), (self.plataforma_ovo_dee.rect.x + 100, self.plataforma_ovo_dee.rect.y + 145), 3)
+        if self.tweedle_dum.vidas > 0:
+            pygame.draw.line(window, MARROM, (self.ioio_dum.rect.x + 24, self.ioio_dum.rect.y + 5), (self.plataforma_ovo_dum.rect.x + 100, self.plataforma_ovo_dum.rect.y + 145), 3)
         # Para ser mais realista, essa linha pode ser uma Catenária!
 
         # Desenhando os Ioio e os ovos:
@@ -206,7 +208,7 @@ class TelaTweedle:
                         self.canal_dano.play(SOM_ALICE_DANO, loops=0)
 
         # Muda de tela quando os Tweedle morrem:
-        if len(self.grupo_tweedle)== 0:
+        if len(self.grupo_plataformas_ovo) == 0:
             self.canal_0.stop()
             self.tela_atual = "TelaVitoria"
             self.nivel = 2
