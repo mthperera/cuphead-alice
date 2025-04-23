@@ -75,6 +75,7 @@ class TelaGameOver:
             
             if evento.type == pygame.JOYBUTTONDOWN:
                 if evento.button == 0:
+                    self.canal_0.stop()
                     self.tela_atual = "TelaRanking"
 
 

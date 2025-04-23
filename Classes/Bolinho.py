@@ -38,7 +38,7 @@ class Bolinho(pygame.sprite.Sprite):
         self.image = BOLINHO
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect(center = (x, y))
-        self.velocidade = 500
+        self.velocidade = 700
         self.velocidade_x = self.velocidade * cos(radians(angulo))
         self.velocidade_y = - self.velocidade * sin(radians(angulo))
         self.t0 = pygame.time.get_ticks()
