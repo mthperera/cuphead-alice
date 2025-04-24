@@ -1,9 +1,8 @@
-[![📅 Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/0Y5_N7_q)
-
 # 🎮 Projeto Pygame — *O Último Chá de Alice?*
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)
 ![Pygame](https://img.shields.io/badge/Pygame-2.5.2-green?logo=pygame)
+![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)
 
 👩‍💻 Projeto desenvolvido por **Matheus Henrique Pereira Borba** e **Oscar Rodrigues de Sousa Filho**, alunos do 1º semestre de Ciência da Computação do **Insper**.
 
